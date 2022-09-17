@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content=" IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Basic</title>
+
+
+
+
+
+        <!--jquery CDN-->
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        
+        
+        <!--jquery code-->
+        <script>
+            $(document).ready(function() {});
+        </script>
+
+
+
+
+
+
+        <!--resetstylesheet link-->
+
+        <link href= "./public/resetstylesheet.css" type= "text/css" rel= "stylesheet">
+
+        <!--stylesheet link-->
+
+        <link href= "./public/style.css" type= "text/css" rel= "stylesheet">
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+
+        <!--bootstrap CDN-->
+
+        <!-- CSS only -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+
+        <!-- JavaScript Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+        
+
+
+
+
+    </head>
+    <body>
+        <header>
+            <h2>Weather DashBoard</h2>
+            <button id="clear">Erase</button>
+        </header>
+        <div class = "container-fluid contents">
+            <div class="row">
+
+                <div class="col-md-3 leftBox">
+                    <div id="searchBox">
+                        <h2>Search for a city:</h2>
+                        <input id="input" type="text" placeholder="Enter"/>
+                        <br>
+                        <button id="search">Search</button>
+                    </div>
+                    <div id="historyBox">
+                        <button id="btn1"></button>
+                        <button id="btn2"></button>
+                        <button id="btn3"></button>
+                        <button id="btn4"></button>
+                        <button id="btn5"></button>
+                        <button id="btn6"></button>
+                        <button id="btn7"></button>
+                        <button id="btn8"></button>
+                        <button id="btn9"></button>
+                        <button id="btn10"></button>
+                    </div>
+                </div>
+
+                <div class="col-md-9 rightBox">
+                    <div id="dataBox">
+                        <h2 id="nameBox">City Name (XX/XX/XXXX)</h2>
+                        <div id="imgB"></div>
+                        <div id="tempBox">Temp: XX.XX</div>
+                        <br>
+                        <div id="windBox">Wind: X.XXXmph</div>
+                        <br>
+                        <div id="humBox">Humidity: XX%</div>
+                        <br>
+                        <div>UV index: <a id="uvVal">X.XX</a></div>
+                    </div>
+                    <div id="castBox">
+                        <h2>5-Day Forecast:</h2>
+                        <div id="foreBox">
+                            <div class="smData" id="day1">
+                                <div class="foreData">
+                                    <h6 id="date1">(XX/XX/XXXX)</h6>
+                                    <div class="imgS" id="imgS1"></div>
+                                    <div id="temp1">Temp: XX.XX</div>
+                                    <br>
+                                    <div id="wind1">Wind: X.XXXmph</div>
+                                    <br>
+                                    <div id="hum1">Humidity: XX%</div>
+                                    <br>
+                                </div>
+                            </div>
+                            <div class="smData" id="day2">
+                                <div class="foreData">
+                                    <h6 id="date2">(XX/XX/XXXX)</h6>
+                                    <div class="imgS" id="imgS2"></div>
+                                    <div id="temp2">Temp: XX.XX</div>
+                                    <br>
+                                    <div id="wind2">Wind: X.XXXmph</div>
+                                    <br>
+                                    <div id="hum2">Humidity: XX%</div>
+                                    <br>
+                                </div>
+                            </div>
+                            <div class="smData" id="day3">
+                                <div class="foreData">
+                                    <h6 id="date3">(XX/XX/XXXX)</h6>
+                                    <div class="imgS" id="imgS3"></div>
+                                    <div id="temp3">Temp: XX.XX</div>
+                                    <br>
+                                    <div id="wind3">Wind: X.XXXmph</div>
+                                    <br>
+                                    <div id="hum3">Humidity: XX%</div>
+                                    <br>
+                                </div>
+                            </div>
+                            <div class="smData" id="day4">
+                                <div class="foreData">
+                                    <h6 id="date4">(XX/XX/XXXX)</h6>
+                                    <div class="imgS" id="imgS4"></div>
+                                    <div id="temp4">Temp: XX.XX</div>
+                                    <br>
+                                    <div id="wind4">Wind: X.XXXmph</div>
+                                    <br>
+                                    <div id="hum4">Humidity: XX%</div>
+                                    <br>
+                                </div>
+                            </div>
+                            <div class="smData" id="day5">
+                                <div class="foreData">
+                                    <h6 id="date5">(XX/XX/XXXX)</h6>
+                                    <div class="imgS" id="imgS5"></div>
+                                    <div id="temp5">Temp: XX.XX</div>
+                                    <br>
+                                    <div id="wind5">Wind: X.XXXmph</div>
+                                    <br>
+                                    <div id="hum5">Humidity: XX%</div>
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+        
+
+        </div>
+    </body>
+
+    <!--JavaScript link-->
+
+    <script src="./public/script.js"></script>
+
+    
+</html>
