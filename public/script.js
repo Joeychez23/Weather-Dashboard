@@ -121,6 +121,9 @@ searchBtn.addEventListener("click", async function() {
         console.log(val);
         lat = val.data[0].lat;
         lon = val.data[0].lon;
+        if (loadVal.length < 1) {
+            id = 0;
+        }
         let foreVal = await checkFore();
 
         if(passedCity == true && passedFore == true) {
@@ -134,7 +137,7 @@ searchBtn.addEventListener("click", async function() {
                 }
             }
             loadVal.sort((a, b) => b.id - a.id);
-            //console.log(loadVal);
+            console.log(loadVal);
             cityName = val.data[0].city_name.split(',');
             //console.log(cityName[0]);
             id += 1;
