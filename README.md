@@ -9,7 +9,7 @@ NOTE! Reapeating city values with default to the most well-known/populated city
 
 ## Output
 
-Images of the site are shown below but the site contains working links, transitions, proper sizing, along with meeting all the requirement needed for completion of the project.
+Images of the site are shown below display the functionality of the site.
 
 Pictures of the site will be provided bellow:
 
@@ -17,15 +17,7 @@ Pictures of the site will be provided bellow:
 <img src="./public/images/2.png" alt="Alt text" title="Optional title">
 <img src="./public/images/3.png" alt="Alt text" title="Optional title">
 <img src="./public/images/4.png" alt="Alt text" title="Optional title">
-<img src="./public/images/5.png" alt="Alt text" title="Optional title">
-<img src="./public/images/6.png" alt="Alt text" title="Optional title">
-<img src="./public/images/7.png" alt="Alt text" title="Optional title">
-<img src="./public/images/8.png" alt="Alt text" title="Optional title">
 
 ## Pages
 
-https://joeychez23.github.io/JS-quiz-4/
-
 ## Repo
-
-https://github.com/Joeychez23/JS-quiz-4
