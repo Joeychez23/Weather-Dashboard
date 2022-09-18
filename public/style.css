@@ -264,3 +264,22 @@ header button:hover {
 a {
     border-radius: 3px;
 }
+
+
+
+@media screen and (max-width: 650px) {
+    .foreData h6 {
+        font-size: 11px;
+    }
+    
+    .smData {
+        height: 150px;
+        font-size: 9px;
+        width: 17.6%;
+    }
+}
+
+a {
+    border-radius: 3px;
+    /*color: lightgreen;*/
+}

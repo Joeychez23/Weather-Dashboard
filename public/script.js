@@ -118,6 +118,7 @@ searchBtn.addEventListener("click", async function() {
     if(cityName != '') {
         let val = await checkCity();
         cityName = val.data[0].city_name;
+        console.log(val);
         lat = val.data[0].lat;
         lon = val.data[0].lon;
         let foreVal = await checkFore();
@@ -152,12 +153,13 @@ searchBtn.addEventListener("click", async function() {
             }
             nameBox.innerText = `${val.data[0].city_name}  (${today.format("MMM Do, YYYY")})`;
             localStorage.setItem(`${val.data[0].city_name}`, JSON.stringify(entry));
-            tempBox.innerText = `Temp: ${val.data[0].temp}°`
-            windBox.innerText = `Wind: ${val.data[0].wind_spd}mph`
-            humBox.innerText = `Humidity: ${val.data[0].rh}%`
+            tempBox.innerText = `Temp: ${val.data[0].temp}°F`
+            windBox.innerText = `Wind: ${val.data[0].wind_spd} MPH`
+            humBox.innerText = `Humidity: ${val.data[0].rh} %`
             let uv = val.data[0].uv;
+            
             if(uv <= 2) {
-                uvVal.style.backgroundColor = 'green';
+                uvVal.style.backgroundColor = 'lightgreen';
             }
             if(uv > 2 && uv <= 5) {
                 uvVal.style.backgroundColor = 'yellow';
@@ -188,29 +190,29 @@ searchBtn.addEventListener("click", async function() {
 
 
             date1.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-            temp1.innerText = `Temp: ${foreVal.data[1].temp}°`;
-            wind1.innerText = `Wind: ${foreVal.data[1].wind_spd}mph`;
-            hum1. innerText = `Humidity: ${foreVal.data[1].rh}%`;
+            temp1.innerText = `Temp: ${foreVal.data[1].temp}°F`;
+            wind1.innerText = `Wind: ${foreVal.data[1].wind_spd} MPH`;
+            hum1. innerText = `Humidity: ${foreVal.data[1].rh} %`;
 
             date2.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-            temp2.innerText = `Temp: ${foreVal.data[2].temp}°`;
-            wind2.innerText = `Wind: ${foreVal.data[2].wind_spd}mph`;
-            hum2. innerText = `Humidity: ${foreVal.data[2].rh}%`;
+            temp2.innerText = `Temp: ${foreVal.data[2].temp}°F`;
+            wind2.innerText = `Wind: ${foreVal.data[2].wind_spd} MPH`;
+            hum2. innerText = `Humidity: ${foreVal.data[2].rh} %`;
 
             date3.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-            temp3.innerText = `Temp: ${foreVal.data[3].temp}°`;
-            wind3.innerText = `Wind: ${foreVal.data[3].wind_spd}mph`;
-            hum3. innerText = `Humidity: ${foreVal.data[3].rh}%`;
+            temp3.innerText = `Temp: ${foreVal.data[3].temp}°F`;
+            wind3.innerText = `Wind: ${foreVal.data[3].wind_spd} MPH`;
+            hum3. innerText = `Humidity: ${foreVal.data[3].rh} %`;
 
             date4.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-            temp4.innerText = `Temp: ${foreVal.data[4].temp}°`;
-            wind4.innerText = `Wind: ${foreVal.data[4].wind_spd}mph`;
-            hum4. innerText = `Humidity: ${foreVal.data[4].rh}%`;
+            temp4.innerText = `Temp: ${foreVal.data[4].temp}°F`;
+            wind4.innerText = `Wind: ${foreVal.data[4].wind_spd} MPH`;
+            hum4. innerText = `Humidity: ${foreVal.data[4].rh} %`;
 
             date5.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-            temp5.innerText = `Temp: ${foreVal.data[5].temp}°`;
-            wind5.innerText = `Wind: ${foreVal.data[5].wind_spd}mph`;
-            hum5. innerText = `Humidity: ${foreVal.data[5].rh}%`;
+            temp5.innerText = `Temp: ${foreVal.data[5].temp}°F`;
+            wind5.innerText = `Wind: ${foreVal.data[5].wind_spd} MPH`;
+            hum5. innerText = `Humidity: ${foreVal.data[5].rh} %`;
 
 
 
@@ -662,12 +664,12 @@ async function loadPage() {
         lon = val.data[0].lon;
         let foreVal = await checkFore();
         nameBox.innerText = `${val.data[0].city_name}  (${today.format("MMM Do, YYYY")})`;
-        tempBox.innerText = `Temp: ${val.data[0].temp}°`
-        windBox.innerText = `Wind: ${val.data[0].wind_spd}mph`
-        humBox.innerText = `Humidity: ${val.data[0].rh}%`
+        tempBox.innerText = `Temp: ${val.data[0].temp}°F`
+        windBox.innerText = `Wind: ${val.data[0].wind_spd} MPH`
+        humBox.innerText = `Humidity: ${val.data[0].rh} %`
         let uv = val.data[0].uv;
         if(uv <= 2) {
-            uvVal.style.backgroundColor = 'green';
+            uvVal.style.backgroundColor = 'lightgreen';
         }
         if(uv > 2 && uv <= 5) {
             uvVal.style.backgroundColor = 'yellow';
@@ -690,29 +692,29 @@ async function loadPage() {
 
 
         date1.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp1.innerText = `Temp: ${foreVal.data[1].temp}°`;
-        wind1.innerText = `Wind: ${foreVal.data[1].wind_spd}mph`;
-        hum1. innerText = `Humidity: ${foreVal.data[1].rh}%`;
+        temp1.innerText = `Temp: ${foreVal.data[1].temp}°F`;
+        wind1.innerText = `Wind: ${foreVal.data[1].wind_spd} MPH`;
+        hum1. innerText = `Humidity: ${foreVal.data[1].rh} %`;
 
         date2.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp2.innerText = `Temp: ${foreVal.data[2].temp}°`;
-        wind2.innerText = `Wind: ${foreVal.data[2].wind_spd}mph`;
-        hum2. innerText = `Humidity: ${foreVal.data[2].rh}%`;
+        temp2.innerText = `Temp: ${foreVal.data[2].temp}°F`;
+        wind2.innerText = `Wind: ${foreVal.data[2].wind_spd} MPH`;
+        hum2. innerText = `Humidity: ${foreVal.data[2].rh} %`;
 
         date3.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp3.innerText = `Temp: ${foreVal.data[3].temp}°`;
-        wind3.innerText = `Wind: ${foreVal.data[3].wind_spd}mph`;
-        hum3. innerText = `Humidity: ${foreVal.data[3].rh}%`;
+        temp3.innerText = `Temp: ${foreVal.data[3].temp}°F`;
+        wind3.innerText = `Wind: ${foreVal.data[3].wind_spd} MPH`;
+        hum3. innerText = `Humidity: ${foreVal.data[3].rh} %`;
 
         date4.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp4.innerText = `Temp: ${foreVal.data[4].temp}°`;
-        wind4.innerText = `Wind: ${foreVal.data[4].wind_spd}mph`;
-        hum4. innerText = `Humidity: ${foreVal.data[4].rh}%`;
+        temp4.innerText = `Temp: ${foreVal.data[4].temp}°F`;
+        wind4.innerText = `Wind: ${foreVal.data[4].wind_spd} MPH`;
+        hum4. innerText = `Humidity: ${foreVal.data[4].rh} %`;
 
         date5.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp5.innerText = `Temp: ${foreVal.data[5].temp}°`;
-        wind5.innerText = `Wind: ${foreVal.data[5].wind_spd}mph`;
-        hum5. innerText = `Humidity: ${foreVal.data[5].rh}%`;
+        temp5.innerText = `Temp: ${foreVal.data[5].temp}°F`;
+        wind5.innerText = `Wind: ${foreVal.data[5].wind_spd} MPH`;
+        hum5. innerText = `Humidity: ${foreVal.data[5].rh} %`;
 
 
 
@@ -1127,12 +1129,12 @@ btn1.addEventListener("click", async function() {
         //console.log(val);
         nameBox.innerText = `${val.data[0].city_name}  (${today.format("MMM Do, YYYY")})`;
         localStorage.setItem(`${val.data[0].city_name}`, JSON.stringify(entry));
-        tempBox.innerText = `Temp: ${val.data[0].temp}°`
-        windBox.innerText = `Wind: ${val.data[0].wind_spd}mph`
-        humBox.innerText = `Humidity: ${val.data[0].rh}%`
+        tempBox.innerText = `Temp: ${val.data[0].temp}°F`
+        windBox.innerText = `Wind: ${val.data[0].wind_spd} MPH`
+        humBox.innerText = `Humidity: ${val.data[0].rh} %`
         let uv = val.data[0].uv;
         if(uv <= 2) {
-            uvVal.style.backgroundColor = 'green';
+            uvVal.style.backgroundColor = 'lightgreen';
         }
         if(uv > 2 && uv <= 5) {
             uvVal.style.backgroundColor = 'yellow';
@@ -1163,29 +1165,29 @@ btn1.addEventListener("click", async function() {
 
 
         date1.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp1.innerText = `Temp: ${foreVal.data[1].temp}°`;
-        wind1.innerText = `Wind: ${foreVal.data[1].wind_spd}mph`;
-        hum1. innerText = `Humidity: ${foreVal.data[1].rh}%`;
+        temp1.innerText = `Temp: ${foreVal.data[1].temp}°F`;
+        wind1.innerText = `Wind: ${foreVal.data[1].wind_spd} MPH`;
+        hum1. innerText = `Humidity: ${foreVal.data[1].rh} %`;
 
         date2.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp2.innerText = `Temp: ${foreVal.data[2].temp}°`;
-        wind2.innerText = `Wind: ${foreVal.data[2].wind_spd}mph`;
-        hum2. innerText = `Humidity: ${foreVal.data[2].rh}%`;
+        temp2.innerText = `Temp: ${foreVal.data[2].temp}°F`;
+        wind2.innerText = `Wind: ${foreVal.data[2].wind_spd} MPH`;
+        hum2. innerText = `Humidity: ${foreVal.data[2].rh} %`;
 
         date3.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp3.innerText = `Temp: ${foreVal.data[3].temp}°`;
-        wind3.innerText = `Wind: ${foreVal.data[3].wind_spd}mph`;
-        hum3. innerText = `Humidity: ${foreVal.data[3].rh}%`;
+        temp3.innerText = `Temp: ${foreVal.data[3].temp}°F`;
+        wind3.innerText = `Wind: ${foreVal.data[3].wind_spd} MPH`;
+        hum3. innerText = `Humidity: ${foreVal.data[3].rh} %`;
 
         date4.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp4.innerText = `Temp: ${foreVal.data[4].temp}°`;
-        wind4.innerText = `Wind: ${foreVal.data[4].wind_spd}mph`;
-        hum4. innerText = `Humidity: ${foreVal.data[4].rh}%`;
+        temp4.innerText = `Temp: ${foreVal.data[4].temp}°F`;
+        wind4.innerText = `Wind: ${foreVal.data[4].wind_spd} MPH`;
+        hum4. innerText = `Humidity: ${foreVal.data[4].rh} %`;
 
         date5.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp5.innerText = `Temp: ${foreVal.data[5].temp}°`;
-        wind5.innerText = `Wind: ${foreVal.data[5].wind_spd}mph`;
-        hum5. innerText = `Humidity: ${foreVal.data[5].rh}%`;
+        temp5.innerText = `Temp: ${foreVal.data[5].temp}°F`;
+        wind5.innerText = `Wind: ${foreVal.data[5].wind_spd} MPH`;
+        hum5. innerText = `Humidity: ${foreVal.data[5].rh} %`;
 
 
 
@@ -1596,12 +1598,12 @@ btn2.addEventListener("click", async function() {
         //console.log(val);
         nameBox.innerText = `${val.data[0].city_name}  (${today.format("MMM Do, YYYY")})`;
         localStorage.setItem(`${val.data[0].city_name}`, JSON.stringify(entry));
-        tempBox.innerText = `Temp: ${val.data[0].temp}°`
-        windBox.innerText = `Wind: ${val.data[0].wind_spd}mph`
-        humBox.innerText = `Humidity: ${val.data[0].rh}%`
+        tempBox.innerText = `Temp: ${val.data[0].temp}°F`
+        windBox.innerText = `Wind: ${val.data[0].wind_spd} MPH`
+        humBox.innerText = `Humidity: ${val.data[0].rh} %`
         let uv = val.data[0].uv;
         if(uv <= 2) {
-            uvVal.style.backgroundColor = 'green';
+            uvVal.style.backgroundColor = 'lightgreen';
         }
         if(uv > 2 && uv <= 5) {
             uvVal.style.backgroundColor = 'yellow';
@@ -1632,29 +1634,29 @@ btn2.addEventListener("click", async function() {
 
 
         date1.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp1.innerText = `Temp: ${foreVal.data[1].temp}°`;
-        wind1.innerText = `Wind: ${foreVal.data[1].wind_spd}mph`;
-        hum1. innerText = `Humidity: ${foreVal.data[1].rh}%`;
+        temp1.innerText = `Temp: ${foreVal.data[1].temp}°F`;
+        wind1.innerText = `Wind: ${foreVal.data[1].wind_spd} MPH`;
+        hum1. innerText = `Humidity: ${foreVal.data[1].rh} %`;
 
         date2.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp2.innerText = `Temp: ${foreVal.data[2].temp}°`;
-        wind2.innerText = `Wind: ${foreVal.data[2].wind_spd}mph`;
-        hum2. innerText = `Humidity: ${foreVal.data[2].rh}%`;
+        temp2.innerText = `Temp: ${foreVal.data[2].temp}°F`;
+        wind2.innerText = `Wind: ${foreVal.data[2].wind_spd} MPH`;
+        hum2. innerText = `Humidity: ${foreVal.data[2].rh} %`;
 
         date3.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp3.innerText = `Temp: ${foreVal.data[3].temp}°`;
-        wind3.innerText = `Wind: ${foreVal.data[3].wind_spd}mph`;
-        hum3. innerText = `Humidity: ${foreVal.data[3].rh}%`;
+        temp3.innerText = `Temp: ${foreVal.data[3].temp}°F`;
+        wind3.innerText = `Wind: ${foreVal.data[3].wind_spd} MPH`;
+        hum3. innerText = `Humidity: ${foreVal.data[3].rh} %`;
 
         date4.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp4.innerText = `Temp: ${foreVal.data[4].temp}°`;
-        wind4.innerText = `Wind: ${foreVal.data[4].wind_spd}mph`;
-        hum4. innerText = `Humidity: ${foreVal.data[4].rh}%`;
+        temp4.innerText = `Temp: ${foreVal.data[4].temp}°F`;
+        wind4.innerText = `Wind: ${foreVal.data[4].wind_spd} MPH`;
+        hum4. innerText = `Humidity: ${foreVal.data[4].rh} %`;
 
         date5.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp5.innerText = `Temp: ${foreVal.data[5].temp}°`;
-        wind5.innerText = `Wind: ${foreVal.data[5].wind_spd}mph`;
-        hum5. innerText = `Humidity: ${foreVal.data[5].rh}%`;
+        temp5.innerText = `Temp: ${foreVal.data[5].temp}°F`;
+        wind5.innerText = `Wind: ${foreVal.data[5].wind_spd} MPH`;
+        hum5. innerText = `Humidity: ${foreVal.data[5].rh} %`;
 
 
 
@@ -2064,12 +2066,12 @@ btn3.addEventListener("click", async function() {
         //console.log(val);
         nameBox.innerText = `${val.data[0].city_name}  (${today.format("MMM Do, YYYY")})`;
         localStorage.setItem(`${val.data[0].city_name}`, JSON.stringify(entry));
-        tempBox.innerText = `Temp: ${val.data[0].temp}°`
-        windBox.innerText = `Wind: ${val.data[0].wind_spd}mph`
-        humBox.innerText = `Humidity: ${val.data[0].rh}%`
+        tempBox.innerText = `Temp: ${val.data[0].temp}°F`
+        windBox.innerText = `Wind: ${val.data[0].wind_spd} MPH`
+        humBox.innerText = `Humidity: ${val.data[0].rh} %`
         let uv = val.data[0].uv;
         if(uv <= 2) {
-            uvVal.style.backgroundColor = 'green';
+            uvVal.style.backgroundColor = 'lightgreen';
         }
         if(uv > 2 && uv <= 5) {
             uvVal.style.backgroundColor = 'yellow';
@@ -2100,29 +2102,29 @@ btn3.addEventListener("click", async function() {
 
 
         date1.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp1.innerText = `Temp: ${foreVal.data[1].temp}°`;
-        wind1.innerText = `Wind: ${foreVal.data[1].wind_spd}mph`;
-        hum1. innerText = `Humidity: ${foreVal.data[1].rh}%`;
+        temp1.innerText = `Temp: ${foreVal.data[1].temp}°F`;
+        wind1.innerText = `Wind: ${foreVal.data[1].wind_spd} MPH`;
+        hum1. innerText = `Humidity: ${foreVal.data[1].rh} %`;
 
         date2.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp2.innerText = `Temp: ${foreVal.data[2].temp}°`;
-        wind2.innerText = `Wind: ${foreVal.data[2].wind_spd}mph`;
-        hum2. innerText = `Humidity: ${foreVal.data[2].rh}%`;
+        temp2.innerText = `Temp: ${foreVal.data[2].temp}°F`;
+        wind2.innerText = `Wind: ${foreVal.data[2].wind_spd} MPH`;
+        hum2. innerText = `Humidity: ${foreVal.data[2].rh} %`;
 
         date3.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp3.innerText = `Temp: ${foreVal.data[3].temp}°`;
-        wind3.innerText = `Wind: ${foreVal.data[3].wind_spd}mph`;
-        hum3. innerText = `Humidity: ${foreVal.data[3].rh}%`;
+        temp3.innerText = `Temp: ${foreVal.data[3].temp}°F`;
+        wind3.innerText = `Wind: ${foreVal.data[3].wind_spd} MPH`;
+        hum3. innerText = `Humidity: ${foreVal.data[3].rh} %`;
 
         date4.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp4.innerText = `Temp: ${foreVal.data[4].temp}°`;
-        wind4.innerText = `Wind: ${foreVal.data[4].wind_spd}mph`;
-        hum4. innerText = `Humidity: ${foreVal.data[4].rh}%`;
+        temp4.innerText = `Temp: ${foreVal.data[4].temp}°F`;
+        wind4.innerText = `Wind: ${foreVal.data[4].wind_spd} MPH`;
+        hum4. innerText = `Humidity: ${foreVal.data[4].rh} %`;
 
         date5.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp5.innerText = `Temp: ${foreVal.data[5].temp}°`;
-        wind5.innerText = `Wind: ${foreVal.data[5].wind_spd}mph`;
-        hum5. innerText = `Humidity: ${foreVal.data[5].rh}%`;
+        temp5.innerText = `Temp: ${foreVal.data[5].temp}°F`;
+        wind5.innerText = `Wind: ${foreVal.data[5].wind_spd} MPH`;
+        hum5. innerText = `Humidity: ${foreVal.data[5].rh} %`;
 
 
 
@@ -2529,12 +2531,12 @@ btn4.addEventListener("click", async function() {
         //console.log(val);
         nameBox.innerText = `${val.data[0].city_name}  (${today.format("MMM Do, YYYY")})`;
         localStorage.setItem(`${val.data[0].city_name}`, JSON.stringify(entry));
-        tempBox.innerText = `Temp: ${val.data[0].temp}°`
-        windBox.innerText = `Wind: ${val.data[0].wind_spd}mph`
-        humBox.innerText = `Humidity: ${val.data[0].rh}%`
+        tempBox.innerText = `Temp: ${val.data[0].temp}°F`
+        windBox.innerText = `Wind: ${val.data[0].wind_spd} MPH`
+        humBox.innerText = `Humidity: ${val.data[0].rh} %`
         let uv = val.data[0].uv;
         if(uv <= 2) {
-            uvVal.style.backgroundColor = 'green';
+            uvVal.style.backgroundColor = 'lightgreen';
         }
         if(uv > 2 && uv <= 5) {
             uvVal.style.backgroundColor = 'yellow';
@@ -2565,29 +2567,29 @@ btn4.addEventListener("click", async function() {
 
 
         date1.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp1.innerText = `Temp: ${foreVal.data[1].temp}°`;
-        wind1.innerText = `Wind: ${foreVal.data[1].wind_spd}mph`;
-        hum1. innerText = `Humidity: ${foreVal.data[1].rh}%`;
+        temp1.innerText = `Temp: ${foreVal.data[1].temp}°F`;
+        wind1.innerText = `Wind: ${foreVal.data[1].wind_spd} MPH`;
+        hum1. innerText = `Humidity: ${foreVal.data[1].rh} %`;
 
         date2.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp2.innerText = `Temp: ${foreVal.data[2].temp}°`;
-        wind2.innerText = `Wind: ${foreVal.data[2].wind_spd}mph`;
-        hum2. innerText = `Humidity: ${foreVal.data[2].rh}%`;
+        temp2.innerText = `Temp: ${foreVal.data[2].temp}°F`;
+        wind2.innerText = `Wind: ${foreVal.data[2].wind_spd} MPH`;
+        hum2. innerText = `Humidity: ${foreVal.data[2].rh} %`;
 
         date3.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp3.innerText = `Temp: ${foreVal.data[3].temp}°`;
-        wind3.innerText = `Wind: ${foreVal.data[3].wind_spd}mph`;
-        hum3. innerText = `Humidity: ${foreVal.data[3].rh}%`;
+        temp3.innerText = `Temp: ${foreVal.data[3].temp}°F`;
+        wind3.innerText = `Wind: ${foreVal.data[3].wind_spd} MPH`;
+        hum3. innerText = `Humidity: ${foreVal.data[3].rh} %`;
 
         date4.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp4.innerText = `Temp: ${foreVal.data[4].temp}°`;
-        wind4.innerText = `Wind: ${foreVal.data[4].wind_spd}mph`;
-        hum4. innerText = `Humidity: ${foreVal.data[4].rh}%`;
+        temp4.innerText = `Temp: ${foreVal.data[4].temp}°F`;
+        wind4.innerText = `Wind: ${foreVal.data[4].wind_spd} MPH`;
+        hum4. innerText = `Humidity: ${foreVal.data[4].rh} %`;
 
         date5.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp5.innerText = `Temp: ${foreVal.data[5].temp}°`;
-        wind5.innerText = `Wind: ${foreVal.data[5].wind_spd}mph`;
-        hum5. innerText = `Humidity: ${foreVal.data[5].rh}%`;
+        temp5.innerText = `Temp: ${foreVal.data[5].temp}°F`;
+        wind5.innerText = `Wind: ${foreVal.data[5].wind_spd} MPH`;
+        hum5. innerText = `Humidity: ${foreVal.data[5].rh} %`;
 
 
 
@@ -2995,12 +2997,12 @@ btn5.addEventListener("click", async function() {
         //console.log(val);
         nameBox.innerText = `${val.data[0].city_name}  (${today.format("MMM Do, YYYY")})`;
         localStorage.setItem(`${val.data[0].city_name}`, JSON.stringify(entry));
-        tempBox.innerText = `Temp: ${val.data[0].temp}°`
-        windBox.innerText = `Wind: ${val.data[0].wind_spd}mph`
-        humBox.innerText = `Humidity: ${val.data[0].rh}%`
+        tempBox.innerText = `Temp: ${val.data[0].temp}°F`
+        windBox.innerText = `Wind: ${val.data[0].wind_spd} MPH`
+        humBox.innerText = `Humidity: ${val.data[0].rh} %`
         let uv = val.data[0].uv;
         if(uv <= 2) {
-            uvVal.style.backgroundColor = 'green';
+            uvVal.style.backgroundColor = 'lightgreen';
         }
         if(uv > 2 && uv <= 5) {
             uvVal.style.backgroundColor = 'yellow';
@@ -3031,29 +3033,29 @@ btn5.addEventListener("click", async function() {
 
 
         date1.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp1.innerText = `Temp: ${foreVal.data[1].temp}°`;
-        wind1.innerText = `Wind: ${foreVal.data[1].wind_spd}mph`;
-        hum1. innerText = `Humidity: ${foreVal.data[1].rh}%`;
+        temp1.innerText = `Temp: ${foreVal.data[1].temp}°F`;
+        wind1.innerText = `Wind: ${foreVal.data[1].wind_spd} MPH`;
+        hum1. innerText = `Humidity: ${foreVal.data[1].rh} %`;
 
         date2.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp2.innerText = `Temp: ${foreVal.data[2].temp}°`;
-        wind2.innerText = `Wind: ${foreVal.data[2].wind_spd}mph`;
-        hum2. innerText = `Humidity: ${foreVal.data[2].rh}%`;
+        temp2.innerText = `Temp: ${foreVal.data[2].temp}°F`;
+        wind2.innerText = `Wind: ${foreVal.data[2].wind_spd} MPH`;
+        hum2. innerText = `Humidity: ${foreVal.data[2].rh} %`;
 
         date3.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp3.innerText = `Temp: ${foreVal.data[3].temp}°`;
-        wind3.innerText = `Wind: ${foreVal.data[3].wind_spd}mph`;
-        hum3. innerText = `Humidity: ${foreVal.data[3].rh}%`;
+        temp3.innerText = `Temp: ${foreVal.data[3].temp}°F`;
+        wind3.innerText = `Wind: ${foreVal.data[3].wind_spd} MPH`;
+        hum3. innerText = `Humidity: ${foreVal.data[3].rh} %`;
 
         date4.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp4.innerText = `Temp: ${foreVal.data[4].temp}°`;
-        wind4.innerText = `Wind: ${foreVal.data[4].wind_spd}mph`;
-        hum4. innerText = `Humidity: ${foreVal.data[4].rh}%`;
+        temp4.innerText = `Temp: ${foreVal.data[4].temp}°F`;
+        wind4.innerText = `Wind: ${foreVal.data[4].wind_spd} MPH`;
+        hum4. innerText = `Humidity: ${foreVal.data[4].rh} %`;
 
         date5.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp5.innerText = `Temp: ${foreVal.data[5].temp}°`;
-        wind5.innerText = `Wind: ${foreVal.data[5].wind_spd}mph`;
-        hum5. innerText = `Humidity: ${foreVal.data[5].rh}%`;
+        temp5.innerText = `Temp: ${foreVal.data[5].temp}°F`;
+        wind5.innerText = `Wind: ${foreVal.data[5].wind_spd} MPH`;
+        hum5. innerText = `Humidity: ${foreVal.data[5].rh} %`;
 
 
 
@@ -3461,12 +3463,12 @@ btn6.addEventListener("click", async function() {
         //console.log(val);
         nameBox.innerText = `${val.data[0].city_name}  (${today.format("MMM Do, YYYY")})`;
         localStorage.setItem(`${val.data[0].city_name}`, JSON.stringify(entry));
-        tempBox.innerText = `Temp: ${val.data[0].temp}°`
-        windBox.innerText = `Wind: ${val.data[0].wind_spd}mph`
-        humBox.innerText = `Humidity: ${val.data[0].rh}%`
+        tempBox.innerText = `Temp: ${val.data[0].temp}°F`
+        windBox.innerText = `Wind: ${val.data[0].wind_spd} MPH`
+        humBox.innerText = `Humidity: ${val.data[0].rh} %`
         let uv = val.data[0].uv;
         if(uv <= 2) {
-            uvVal.style.backgroundColor = 'green';
+            uvVal.style.backgroundColor = 'lightgreen';
         }
         if(uv > 2 && uv <= 5) {
             uvVal.style.backgroundColor = 'yellow';
@@ -3497,29 +3499,29 @@ btn6.addEventListener("click", async function() {
 
 
         date1.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp1.innerText = `Temp: ${foreVal.data[1].temp}°`;
-        wind1.innerText = `Wind: ${foreVal.data[1].wind_spd}mph`;
-        hum1. innerText = `Humidity: ${foreVal.data[1].rh}%`;
+        temp1.innerText = `Temp: ${foreVal.data[1].temp}°F`;
+        wind1.innerText = `Wind: ${foreVal.data[1].wind_spd} MPH`;
+        hum1. innerText = `Humidity: ${foreVal.data[1].rh} %`;
 
         date2.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp2.innerText = `Temp: ${foreVal.data[2].temp}°`;
-        wind2.innerText = `Wind: ${foreVal.data[2].wind_spd}mph`;
-        hum2. innerText = `Humidity: ${foreVal.data[2].rh}%`;
+        temp2.innerText = `Temp: ${foreVal.data[2].temp}°F`;
+        wind2.innerText = `Wind: ${foreVal.data[2].wind_spd} MPH`;
+        hum2. innerText = `Humidity: ${foreVal.data[2].rh} %`;
 
         date3.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp3.innerText = `Temp: ${foreVal.data[3].temp}°`;
-        wind3.innerText = `Wind: ${foreVal.data[3].wind_spd}mph`;
-        hum3. innerText = `Humidity: ${foreVal.data[3].rh}%`;
+        temp3.innerText = `Temp: ${foreVal.data[3].temp}°F`;
+        wind3.innerText = `Wind: ${foreVal.data[3].wind_spd} MPH`;
+        hum3. innerText = `Humidity: ${foreVal.data[3].rh} %`;
 
         date4.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp4.innerText = `Temp: ${foreVal.data[4].temp}°`;
-        wind4.innerText = `Wind: ${foreVal.data[4].wind_spd}mph`;
-        hum4. innerText = `Humidity: ${foreVal.data[4].rh}%`;
+        temp4.innerText = `Temp: ${foreVal.data[4].temp}°F`;
+        wind4.innerText = `Wind: ${foreVal.data[4].wind_spd} MPH`;
+        hum4. innerText = `Humidity: ${foreVal.data[4].rh} %`;
 
         date5.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp5.innerText = `Temp: ${foreVal.data[5].temp}°`;
-        wind5.innerText = `Wind: ${foreVal.data[5].wind_spd}mph`;
-        hum5. innerText = `Humidity: ${foreVal.data[5].rh}%`;
+        temp5.innerText = `Temp: ${foreVal.data[5].temp}°F`;
+        wind5.innerText = `Wind: ${foreVal.data[5].wind_spd} MPH`;
+        hum5. innerText = `Humidity: ${foreVal.data[5].rh} %`;
 
 
 
@@ -3927,12 +3929,12 @@ btn7.addEventListener("click", async function() {
         //console.log(val);
         nameBox.innerText = `${val.data[0].city_name}  (${today.format("MMM Do, YYYY")})`;
         localStorage.setItem(`${val.data[0].city_name}`, JSON.stringify(entry));
-        tempBox.innerText = `Temp: ${val.data[0].temp}°`
-        windBox.innerText = `Wind: ${val.data[0].wind_spd}mph`
-        humBox.innerText = `Humidity: ${val.data[0].rh}%`
+        tempBox.innerText = `Temp: ${val.data[0].temp}°F`
+        windBox.innerText = `Wind: ${val.data[0].wind_spd} MPH`
+        humBox.innerText = `Humidity: ${val.data[0].rh} %`
         let uv = val.data[0].uv;
         if(uv <= 2) {
-            uvVal.style.backgroundColor = 'green';
+            uvVal.style.backgroundColor = 'lightgreen';
         }
         if(uv > 2 && uv <= 5) {
             uvVal.style.backgroundColor = 'yellow';
@@ -3963,29 +3965,29 @@ btn7.addEventListener("click", async function() {
 
 
         date1.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp1.innerText = `Temp: ${foreVal.data[1].temp}°`;
-        wind1.innerText = `Wind: ${foreVal.data[1].wind_spd}mph`;
-        hum1. innerText = `Humidity: ${foreVal.data[1].rh}%`;
+        temp1.innerText = `Temp: ${foreVal.data[1].temp}°F`;
+        wind1.innerText = `Wind: ${foreVal.data[1].wind_spd} MPH`;
+        hum1. innerText = `Humidity: ${foreVal.data[1].rh} %`;
 
         date2.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp2.innerText = `Temp: ${foreVal.data[2].temp}°`;
-        wind2.innerText = `Wind: ${foreVal.data[2].wind_spd}mph`;
-        hum2. innerText = `Humidity: ${foreVal.data[2].rh}%`;
+        temp2.innerText = `Temp: ${foreVal.data[2].temp}°F`;
+        wind2.innerText = `Wind: ${foreVal.data[2].wind_spd} MPH`;
+        hum2. innerText = `Humidity: ${foreVal.data[2].rh} %`;
 
         date3.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp3.innerText = `Temp: ${foreVal.data[3].temp}°`;
-        wind3.innerText = `Wind: ${foreVal.data[3].wind_spd}mph`;
-        hum3. innerText = `Humidity: ${foreVal.data[3].rh}%`;
+        temp3.innerText = `Temp: ${foreVal.data[3].temp}°F`;
+        wind3.innerText = `Wind: ${foreVal.data[3].wind_spd} MPH`;
+        hum3. innerText = `Humidity: ${foreVal.data[3].rh} %`;
 
         date4.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp4.innerText = `Temp: ${foreVal.data[4].temp}°`;
-        wind4.innerText = `Wind: ${foreVal.data[4].wind_spd}mph`;
-        hum4. innerText = `Humidity: ${foreVal.data[4].rh}%`;
+        temp4.innerText = `Temp: ${foreVal.data[4].temp}°F`;
+        wind4.innerText = `Wind: ${foreVal.data[4].wind_spd} MPH`;
+        hum4. innerText = `Humidity: ${foreVal.data[4].rh} %`;
 
         date5.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp5.innerText = `Temp: ${foreVal.data[5].temp}°`;
-        wind5.innerText = `Wind: ${foreVal.data[5].wind_spd}mph`;
-        hum5. innerText = `Humidity: ${foreVal.data[5].rh}%`;
+        temp5.innerText = `Temp: ${foreVal.data[5].temp}°F`;
+        wind5.innerText = `Wind: ${foreVal.data[5].wind_spd} MPH`;
+        hum5. innerText = `Humidity: ${foreVal.data[5].rh} %`;
 
 
 
@@ -4393,12 +4395,12 @@ btn8.addEventListener("click", async function() {
         //console.log(val);
         nameBox.innerText = `${val.data[0].city_name}  (${today.format("MMM Do, YYYY")})`;
         localStorage.setItem(`${val.data[0].city_name}`, JSON.stringify(entry));
-        tempBox.innerText = `Temp: ${val.data[0].temp}°`
-        windBox.innerText = `Wind: ${val.data[0].wind_spd}mph`
-        humBox.innerText = `Humidity: ${val.data[0].rh}%`
+        tempBox.innerText = `Temp: ${val.data[0].temp}°F`
+        windBox.innerText = `Wind: ${val.data[0].wind_spd} MPH`
+        humBox.innerText = `Humidity: ${val.data[0].rh} %`
         let uv = val.data[0].uv;
         if(uv <= 2) {
-            uvVal.style.backgroundColor = 'green';
+            uvVal.style.backgroundColor = 'lightgreen';
         }
         if(uv > 2 && uv <= 5) {
             uvVal.style.backgroundColor = 'yellow';
@@ -4429,29 +4431,29 @@ btn8.addEventListener("click", async function() {
 
 
         date1.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp1.innerText = `Temp: ${foreVal.data[1].temp}°`;
-        wind1.innerText = `Wind: ${foreVal.data[1].wind_spd}mph`;
-        hum1. innerText = `Humidity: ${foreVal.data[1].rh}%`;
+        temp1.innerText = `Temp: ${foreVal.data[1].temp}°F`;
+        wind1.innerText = `Wind: ${foreVal.data[1].wind_spd} MPH`;
+        hum1. innerText = `Humidity: ${foreVal.data[1].rh} %`;
 
         date2.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp2.innerText = `Temp: ${foreVal.data[2].temp}°`;
-        wind2.innerText = `Wind: ${foreVal.data[2].wind_spd}mph`;
-        hum2. innerText = `Humidity: ${foreVal.data[2].rh}%`;
+        temp2.innerText = `Temp: ${foreVal.data[2].temp}°F`;
+        wind2.innerText = `Wind: ${foreVal.data[2].wind_spd} MPH`;
+        hum2. innerText = `Humidity: ${foreVal.data[2].rh} %`;
 
         date3.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp3.innerText = `Temp: ${foreVal.data[3].temp}°`;
-        wind3.innerText = `Wind: ${foreVal.data[3].wind_spd}mph`;
-        hum3. innerText = `Humidity: ${foreVal.data[3].rh}%`;
+        temp3.innerText = `Temp: ${foreVal.data[3].temp}°F`;
+        wind3.innerText = `Wind: ${foreVal.data[3].wind_spd} MPH`;
+        hum3. innerText = `Humidity: ${foreVal.data[3].rh} %`;
 
         date4.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp4.innerText = `Temp: ${foreVal.data[4].temp}°`;
-        wind4.innerText = `Wind: ${foreVal.data[4].wind_spd}mph`;
-        hum4. innerText = `Humidity: ${foreVal.data[4].rh}%`;
+        temp4.innerText = `Temp: ${foreVal.data[4].temp}°F`;
+        wind4.innerText = `Wind: ${foreVal.data[4].wind_spd} MPH`;
+        hum4. innerText = `Humidity: ${foreVal.data[4].rh} %`;
 
         date5.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp5.innerText = `Temp: ${foreVal.data[5].temp}°`;
-        wind5.innerText = `Wind: ${foreVal.data[5].wind_spd}mph`;
-        hum5. innerText = `Humidity: ${foreVal.data[5].rh}%`;
+        temp5.innerText = `Temp: ${foreVal.data[5].temp}°F`;
+        wind5.innerText = `Wind: ${foreVal.data[5].wind_spd} MPH`;
+        hum5. innerText = `Humidity: ${foreVal.data[5].rh} %`;
 
 
 
@@ -4859,12 +4861,12 @@ btn9.addEventListener("click", async function() {
         //console.log(val);
         nameBox.innerText = `${val.data[0].city_name}  (${today.format("MMM Do, YYYY")})`;
         localStorage.setItem(`${val.data[0].city_name}`, JSON.stringify(entry));
-        tempBox.innerText = `Temp: ${val.data[0].temp}°`
-        windBox.innerText = `Wind: ${val.data[0].wind_spd}mph`
-        humBox.innerText = `Humidity: ${val.data[0].rh}%`
+        tempBox.innerText = `Temp: ${val.data[0].temp}°F`
+        windBox.innerText = `Wind: ${val.data[0].wind_spd} MPH`
+        humBox.innerText = `Humidity: ${val.data[0].rh} %`
         let uv = val.data[0].uv;
         if(uv <= 2) {
-            uvVal.style.backgroundColor = 'green';
+            uvVal.style.backgroundColor = 'lightgreen';
         }
         if(uv > 2 && uv <= 5) {
             uvVal.style.backgroundColor = 'yellow';
@@ -4895,29 +4897,29 @@ btn9.addEventListener("click", async function() {
 
 
         date1.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp1.innerText = `Temp: ${foreVal.data[1].temp}°`;
-        wind1.innerText = `Wind: ${foreVal.data[1].wind_spd}mph`;
-        hum1. innerText = `Humidity: ${foreVal.data[1].rh}%`;
+        temp1.innerText = `Temp: ${foreVal.data[1].temp}°F`;
+        wind1.innerText = `Wind: ${foreVal.data[1].wind_spd} MPH`;
+        hum1. innerText = `Humidity: ${foreVal.data[1].rh} %`;
 
         date2.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp2.innerText = `Temp: ${foreVal.data[2].temp}°`;
-        wind2.innerText = `Wind: ${foreVal.data[2].wind_spd}mph`;
-        hum2. innerText = `Humidity: ${foreVal.data[2].rh}%`;
+        temp2.innerText = `Temp: ${foreVal.data[2].temp}°F`;
+        wind2.innerText = `Wind: ${foreVal.data[2].wind_spd} MPH`;
+        hum2. innerText = `Humidity: ${foreVal.data[2].rh} %`;
 
         date3.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp3.innerText = `Temp: ${foreVal.data[3].temp}°`;
-        wind3.innerText = `Wind: ${foreVal.data[3].wind_spd}mph`;
-        hum3. innerText = `Humidity: ${foreVal.data[3].rh}%`;
+        temp3.innerText = `Temp: ${foreVal.data[3].temp}°F`;
+        wind3.innerText = `Wind: ${foreVal.data[3].wind_spd} MPH`;
+        hum3. innerText = `Humidity: ${foreVal.data[3].rh} %`;
 
         date4.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp4.innerText = `Temp: ${foreVal.data[4].temp}°`;
-        wind4.innerText = `Wind: ${foreVal.data[4].wind_spd}mph`;
-        hum4. innerText = `Humidity: ${foreVal.data[4].rh}%`;
+        temp4.innerText = `Temp: ${foreVal.data[4].temp}°F`;
+        wind4.innerText = `Wind: ${foreVal.data[4].wind_spd} MPH`;
+        hum4. innerText = `Humidity: ${foreVal.data[4].rh} %`;
 
         date5.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp5.innerText = `Temp: ${foreVal.data[5].temp}°`;
-        wind5.innerText = `Wind: ${foreVal.data[5].wind_spd}mph`;
-        hum5. innerText = `Humidity: ${foreVal.data[5].rh}%`;
+        temp5.innerText = `Temp: ${foreVal.data[5].temp}°F`;
+        wind5.innerText = `Wind: ${foreVal.data[5].wind_spd} MPH`;
+        hum5. innerText = `Humidity: ${foreVal.data[5].rh} %`;
 
 
 
@@ -5325,12 +5327,12 @@ btn10.addEventListener("click", async function() {
         //console.log(val);
         nameBox.innerText = `${val.data[0].city_name}  (${today.format("MMM Do, YYYY")})`;
         localStorage.setItem(`${val.data[0].city_name}`, JSON.stringify(entry));
-        tempBox.innerText = `Temp: ${val.data[0].temp}°`
-        windBox.innerText = `Wind: ${val.data[0].wind_spd}mph`
-        humBox.innerText = `Humidity: ${val.data[0].rh}%`
+        tempBox.innerText = `Temp: ${val.data[0].temp}°F`
+        windBox.innerText = `Wind: ${val.data[0].wind_spd} MPH`
+        humBox.innerText = `Humidity: ${val.data[0].rh} %`
         let uv = val.data[0].uv;
         if(uv <= 2) {
-            uvVal.style.backgroundColor = 'green';
+            uvVal.style.backgroundColor = 'lightgreen';
         }
         if(uv > 2 && uv <= 5) {
             uvVal.style.backgroundColor = 'yellow';
@@ -5361,29 +5363,29 @@ btn10.addEventListener("click", async function() {
 
 
         date1.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp1.innerText = `Temp: ${foreVal.data[1].temp}°`;
-        wind1.innerText = `Wind: ${foreVal.data[1].wind_spd}mph`;
-        hum1. innerText = `Humidity: ${foreVal.data[1].rh}%`;
+        temp1.innerText = `Temp: ${foreVal.data[1].temp}°F`;
+        wind1.innerText = `Wind: ${foreVal.data[1].wind_spd} MPH`;
+        hum1. innerText = `Humidity: ${foreVal.data[1].rh} %`;
 
         date2.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp2.innerText = `Temp: ${foreVal.data[2].temp}°`;
-        wind2.innerText = `Wind: ${foreVal.data[2].wind_spd}mph`;
-        hum2. innerText = `Humidity: ${foreVal.data[2].rh}%`;
+        temp2.innerText = `Temp: ${foreVal.data[2].temp}°F`;
+        wind2.innerText = `Wind: ${foreVal.data[2].wind_spd} MPH`;
+        hum2. innerText = `Humidity: ${foreVal.data[2].rh} %`;
 
         date3.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp3.innerText = `Temp: ${foreVal.data[3].temp}°`;
-        wind3.innerText = `Wind: ${foreVal.data[3].wind_spd}mph`;
-        hum3. innerText = `Humidity: ${foreVal.data[3].rh}%`;
+        temp3.innerText = `Temp: ${foreVal.data[3].temp}°F`;
+        wind3.innerText = `Wind: ${foreVal.data[3].wind_spd} MPH`;
+        hum3. innerText = `Humidity: ${foreVal.data[3].rh} %`;
 
         date4.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp4.innerText = `Temp: ${foreVal.data[4].temp}°`;
-        wind4.innerText = `Wind: ${foreVal.data[4].wind_spd}mph`;
-        hum4. innerText = `Humidity: ${foreVal.data[4].rh}%`;
+        temp4.innerText = `Temp: ${foreVal.data[4].temp}°F`;
+        wind4.innerText = `Wind: ${foreVal.data[4].wind_spd} MPH`;
+        hum4. innerText = `Humidity: ${foreVal.data[4].rh} %`;
 
         date5.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
-        temp5.innerText = `Temp: ${foreVal.data[5].temp}°`;
-        wind5.innerText = `Wind: ${foreVal.data[5].wind_spd}mph`;
-        hum5. innerText = `Humidity: ${foreVal.data[5].rh}%`;
+        temp5.innerText = `Temp: ${foreVal.data[5].temp}°F`;
+        wind5.innerText = `Wind: ${foreVal.data[5].wind_spd} MPH`;
+        hum5. innerText = `Humidity: ${foreVal.data[5].rh} %`;
 
 
 
