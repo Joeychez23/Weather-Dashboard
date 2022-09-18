@@ -20,4 +20,8 @@ Pictures of the site will be provided bellow:
 
 ## Pages
 
+https://joeychez23.github.io/Weather-Dashboard/
+
 ## Repo
+
+https://github.com/Joeychez23/Weather-Dashboard
