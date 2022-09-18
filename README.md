@@ -2,7 +2,7 @@
 
 ##Description
 
-This site open with a single page path, The site contain default values where data will be place, once the user searches a city the following data boxes will be filled with values from the https://www.weatherbit.io/api. The site will then store the last 10 user searched values as buttons and with every button press the most recent search will be at the top of the contaner.
+This site open with a single page path, The site contain default values where data will be placed, once the user searches a city the sites data boxes will be filled with weather data values from the https://www.weatherbit.io/api. The site will then store the last 10 user searched values as buttons and with every search button press the most recently searched city will be located at the top of the container.
 NOTE! This API can only hold 500 calls
 NOTE! Los Angles needs LA in the searchbox
 NOTE! Reapeating city values with default to the most well-known/populated city
