@@ -1,8 +1,5 @@
 header {
     height: 85px;
-    /*display: flex;
-    justify-content: center;
-    align-items: center;*/
     text-align: center;
     background-color: cornflowerblue;
 }
@@ -29,30 +26,19 @@ header button:hover {
 }
 
 
-
-.row {
-    height: 100%;
-}
-
-
-.leftBox {
-    /*background-color: red;*/
-    height: 100%;
-}
-
-
 #searchBox {
     display: block;
     height: 200px;
     width: 100%;
     margin-top: 30px;
-    /*border: solid 5px green;*/
 }
+
 
 #searchBox h2{
     font-size: 35px;
     font-weight: 700;
 }
+
 
 #searchBox input{
     height: 65px;
@@ -61,6 +47,7 @@ header button:hover {
     border-radius: 5px;
     
 }
+
 
 #searchBox button{
     border: solid 0px transparent;
@@ -73,9 +60,11 @@ header button:hover {
     color: white;
 }
 
+
 #searchBox button:hover{
     opacity: 75%;
 }
+
 
 #historyBox {
     display: block;
@@ -83,6 +72,7 @@ header button:hover {
     width: 100%;
     border-top: solid 2px black;
 }
+
 
 #historyBox button{
     width: 100%;
@@ -93,15 +83,9 @@ header button:hover {
     border-radius: 5px;
 }
 
+
 #historyBox button:hover{
     opacity: 75%;
-}
-
-
-
-.rightBox {
-    /*background-color: blue;*/
-    height: 100%;
 }
 
 #dataBox {
@@ -113,20 +97,18 @@ header button:hover {
     border: solid 1px black;
 }
 
+
 #imgB {
-    /*background-color: red;*/
     background-size: contain;
-    /*border: solid 2px green;*/
     object-fit: contain;
     height: 60px;
     width: 60px;
 }
 
+
 .imgS {
     background-size: contain;
-    /*border: solid 2px green;*/
     object-fit: contain;
-    /*background-color: red;*/
     height: 30px;
     width: 30px;
 }
@@ -137,11 +119,10 @@ header button:hover {
     display: block;
     height: 300px;
     width: 100%;
-    /*border: solid 5px green;*/
 }
 
+
 #foreBox {
-    /*border: solid 2px orange;*/
     width: 100%;
     height: 250px;
     display: flex;
@@ -155,21 +136,22 @@ header button:hover {
 }
 
 
-
 #foreBox div{
     background-color: darkblue;
-    /*width: 17.6%;*/
 }
+
 
 .foreData h6 {
     font-size: 15px;
 }
+
 
 .smData {
     height: 200px;
     font-size: 15px;
     width: 17.6%;
 }
+
 
 #day1 {
     margin-right: 3%;
@@ -178,6 +160,7 @@ header button:hover {
 #day2 {
     margin-right: 3%;
 }
+
 
 #day3 {
     margin-right: 3%;
@@ -189,65 +172,65 @@ header button:hover {
 }
 
  
+#btn1 {
+    display: none;
+}
+
 
 #btn1 {
     display: none;
 }
 
-#btn1 {
-    display: none;
-}
 
 #btn2 {
     display: none;
 }
 
+
 #btn3 {
     display: none;
 }
+
 
 #btn4 {
     display: none;
 }
 
+
 #btn5 {
     display: none;
 }
+
 
 #btn6 {
     display: none;
 }
 
+
 #btn7 {
     display: none;
 }
+
 
 #btn8 {
     display: none;
 }
 
+
 #btn9 {
     display: none;
 }
+
 
 #btn10 {
     display: none;
 }
 
 
-/*
-@media screen and (max-width: 832px) {
-    .foreData h6 {
-        font-size: 9px;
-    }
-    
-    .smData {
-        height: 200px;
-        font-size: 10px;
-        width: 17.6%;
-    }
+a {
+    border-radius: 3px;
 }
-*/
+
 
 @media screen and (max-width: 950px) {
     .foreData h6 {
@@ -261,11 +244,6 @@ header button:hover {
     }
 }
 
-a {
-    border-radius: 3px;
-}
-
-
 
 @media screen and (max-width: 650px) {
     .foreData h6 {
@@ -277,9 +255,4 @@ a {
         font-size: 9px;
         width: 17.6%;
     }
-}
-
-a {
-    border-radius: 3px;
-    /*color: lightgreen;*/
 }

@@ -6,6 +6,7 @@ const windBox = document.querySelector('#windBox');
 const humBox = document.querySelector('#humBox');
 const uvVal = document.querySelector('#uvVal');
 const historyBox = document.querySelector('#historyBox');
+
 const btn1 = document.querySelector('#btn1');
 const btn2 = document.querySelector('#btn2');
 const btn3 = document.querySelector('#btn3');
@@ -55,10 +56,13 @@ var today = moment();
 let btn
 let loadVal = new Array();
 
+//Clears storage
 $("#clear").click(function() {
     localStorage.clear();
 })
 
+
+//API key
 const api_key = "2667f6ada07a46e09540cd05759781c5";
 let cityName = '';
 
@@ -73,7 +77,7 @@ let lat
 let lon
 
 
-
+//Checks the city name with a promise API call
 async function checkCity() {
     try{
         const api_url2 = `https://api.weatherbit.io/v2.0/current?&city=${cityName}&key=${api_key}&include=minutely&units=I`;
@@ -86,7 +90,7 @@ async function checkCity() {
     }
 }
 
-
+//Checks the forecast data with a promise API call
 async function checkFore() {
     try{
         const api_url2 = `https://api.weatherbit.io/v2.0/forecast/daily?&lat=${lat}&lon=${lon}&key=${api_key}`;
@@ -102,10 +106,11 @@ async function checkFore() {
 
 
 
-
+//Used to sort the local storage values
 let id;
 
 
+//Search button click function
 searchBtn.addEventListener("click", async function() {
     passedCity = false;
     passedFore = false;
@@ -126,34 +131,36 @@ searchBtn.addEventListener("click", async function() {
         }
         let foreVal = await checkFore();
 
+        //Checks to see if both promises pass
         if(passedCity == true && passedFore == true) {
             for(let i = 0; i < localStorage.length; i++) {
                 let check = JSON.parse(localStorage.getItem(localStorage.key(i)));
                 if(check.cityName == val.data[0].city_name) {
-                    //console.log(check.cityName)
-                    //console.log(val.data[0].city_name)
                     console.log("repeat");
                     checkRepeat =  true;
                 }
             }
+            //Sorts list based on id
             loadVal.sort((a, b) => b.id - a.id);
             console.log(loadVal);
             cityName = val.data[0].city_name.split(',');
-            //console.log(cityName[0]);
+
             id += 1;
             if(checkRepeat = true) {
                 entry =  {
-                    id: id,//localStorage.length,
+                    id: id,
                     cityName: val.data[0].city_name
                 }
             }
             let nice = localStorage.length + 1;
             if(checkRepeat = false) {
                 entry =  {
-                    id: id,//nice,
+                    id: id,
                     cityName: val.data[0].city_name
                 }
             }
+
+            //Displays API weather data to all boxes
             nameBox.innerText = `${val.data[0].city_name}  (${today.format("MMM Do, YYYY")})`;
             localStorage.setItem(`${val.data[0].city_name}`, JSON.stringify(entry));
             tempBox.innerText = `Temp: ${val.data[0].temp}°F`
@@ -184,10 +191,8 @@ searchBtn.addEventListener("click", async function() {
 
             for(let i = 0; i < localStorage.length; i++) {
                 loadVal[i] = JSON.parse(localStorage.getItem(localStorage.key(i)));
-                //console.log(loadVal[i]);
             }
             loadVal.sort((a, b) => b.id - a.id);
-            //console.log(loadVal);
 
 
 
@@ -222,8 +227,7 @@ searchBtn.addEventListener("click", async function() {
 
 
 
-            //Set Big Image
-            //console.log(val.data[0].weather.code)
+            //Sets big box
             if(val.data[0].weather.code == 200 || val.data[0].weather.code == 201 || val.data[0].weather.code == 202) {
                 imgB.style.backgroundImage = "url('./public/images/t01d.png')";
             }
@@ -285,8 +289,7 @@ searchBtn.addEventListener("click", async function() {
 
 
 
-            //Set Small Image 1
-            //console.log(foreVal.data[0].weather.code)
+            //Sets small box 1
             if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
                 imgS1.style.backgroundImage = "url('./public/images/t01d.png')";
             }
@@ -342,8 +345,7 @@ searchBtn.addEventListener("click", async function() {
 
 
 
-            //Set Small Image 2
-            //console.log(foreVal.data[0].weather.code)
+            //Sets small box 2
             if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
                 imgS2.style.backgroundImage = "url('./public/images/t01d.png')";
             }
@@ -400,8 +402,7 @@ searchBtn.addEventListener("click", async function() {
 
 
 
-            //Set Small Image 3
-            //console.log(foreVal.data[0].weather.code)
+            //Sets small box 2
             if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
                 imgS3.style.backgroundImage = "url('./public/images/t01d.png')";
             }
@@ -458,8 +459,7 @@ searchBtn.addEventListener("click", async function() {
 
 
 
-            //Set Small Image 4
-            //console.log(foreVal.data[0].weather.code)
+            //Sets small box 4
             if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
                 imgS4.style.backgroundImage = "url('./public/images/t01d.png')";
             }
@@ -513,8 +513,7 @@ searchBtn.addEventListener("click", async function() {
 
 
 
-            //Set Small Image 5
-            //console.log(foreVal.data[0].weather.code)
+            //Sets small box 5
             if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
                 imgS5.style.backgroundImage = "url('./public/images/t01d.png')";
             }
@@ -565,6 +564,7 @@ searchBtn.addEventListener("click", async function() {
             }
 
 
+            //Calls the set function button
             buttons();
         }
 
@@ -577,7 +577,7 @@ searchBtn.addEventListener("click", async function() {
 
 
 
-
+//Sets buttons with local storage values
 function buttons() {
     for(let i = 0; i < localStorage.length; i++) {
         if(i == 0) {
@@ -647,25 +647,24 @@ function buttons() {
 
 
 
-
+//Loads the page when started
 async function loadPage() {
     today = moment();
-    //console.log(localStorage);
     for(let i = 0; i < localStorage.length; i++) {
         loadVal[i] = JSON.parse(localStorage.getItem(localStorage.key(i)));
-        //console.log(loadVal[i]);
     }
     loadVal.sort((a, b) => b.id - a.id);
-    //console.log(loadVal);
     if(loadVal.length > 0) {
+        //Sets id for use
         id = loadVal[0].id;
         cityName = loadVal[0].cityName.split(',');
-        //console.log(cityName);
         cityName = cityName[0];
         let val = await checkCity();
+        console.log(val);
         lat = val.data[0].lat;
         lon = val.data[0].lon;
         let foreVal = await checkFore();
+        //Displays API weather data to all boxes
         nameBox.innerText = `${val.data[0].city_name}  (${today.format("MMM Do, YYYY")})`;
         tempBox.innerText = `Temp: ${val.data[0].temp}°F`
         windBox.innerText = `Wind: ${val.data[0].wind_spd} MPH`
@@ -689,9 +688,6 @@ async function loadPage() {
         uv = uv.toFixed(2);
         uvVal.innerText = `${uv}`
 
-        //console.log(val);
-
-        //console.log(foreVal);
 
 
         date1.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
@@ -721,8 +717,7 @@ async function loadPage() {
 
 
 
-        //Set Big Image
-        //console.log(val.data[0].weather.code)
+        //Sets big box 
         if(val.data[0].weather.code == 200 || val.data[0].weather.code == 201 || val.data[0].weather.code == 202) {
             imgB.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -784,8 +779,7 @@ async function loadPage() {
 
 
 
-        //Set Small Image 1
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small image 1
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS1.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -841,8 +835,7 @@ async function loadPage() {
 
 
 
-        //Set Small Image 2
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small image 2
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS2.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -899,8 +892,7 @@ async function loadPage() {
 
 
 
-        //Set Small Image 3
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small image 3
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS3.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -957,8 +949,7 @@ async function loadPage() {
 
 
 
-        //Set Small Image 4
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small image 4
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS4.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -1012,8 +1003,7 @@ async function loadPage() {
 
 
 
-        //Set Small Image 5
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small image 5
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS5.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -1069,7 +1059,7 @@ async function loadPage() {
 
 
 
-
+    //Calls the set button function
     buttons();
 
 
@@ -1077,6 +1067,8 @@ async function loadPage() {
 }
 
 
+
+//Call the load page function
 loadPage();
 
 
@@ -1084,7 +1076,9 @@ loadPage();
 
 
 
-
+//Sets BTN 1 click function
+//Only diffence with submit is the function doesn't initalize an id value
+//The functions do add to the id values
 btn1.addEventListener("click", async function() {
     today = moment();
     let checkRepeat =  false;
@@ -1097,39 +1091,31 @@ btn1.addEventListener("click", async function() {
         lat = val.data[0].lat;
         lon = val.data[0].lon;
         let foreVal = await checkFore();
-        //console.log(foreVal);
-
-
         for(let i = 0; i < localStorage.length; i++) {
             let check = JSON.parse(localStorage.getItem(localStorage.key(i)));
             if(check.cityName == val.data[0].city_name) {
-                //console.log(check.cityName)
-                //console.log(val.data[0].city_name)
                 console.log("repeat");
                 checkRepeat =  true;
             }
         }
         loadVal.sort((a, b) => b.id - a.id);
-        //console.log(loadVal);
         cityName = val.data[0].city_name.split(',');
-        //console.log(cityName[0]);
         id += 1;
         if(checkRepeat = true) {
             entry =  {
-                id: id,//localStorage.length,
+                id: id,
                 cityName: val.data[0].city_name
             }
         }
-        //console.log(localStorage.length)
         let nice = localStorage.length + 1;
-        //console.log(id);
         if(checkRepeat = false) {
             entry =  {
-                id: id,//nice,
+                id: id,
                 cityName: val.data[0].city_name
             }
         }
-        //console.log(val);
+
+        //Displays API weather data to all boxes
         nameBox.innerText = `${val.data[0].city_name}  (${today.format("MMM Do, YYYY")})`;
         localStorage.setItem(`${val.data[0].city_name}`, JSON.stringify(entry));
         tempBox.innerText = `Temp: ${val.data[0].temp}°F`
@@ -1159,10 +1145,8 @@ btn1.addEventListener("click", async function() {
 
         for(let i = 0; i < localStorage.length; i++) {
             loadVal[i] = JSON.parse(localStorage.getItem(localStorage.key(i)));
-            //console.log(loadVal[i]);
         }
         loadVal.sort((a, b) => b.id - a.id);
-        //console.log(loadVal);
 
 
 
@@ -1197,8 +1181,7 @@ btn1.addEventListener("click", async function() {
 
 
 
-        //Set Big Image
-        //console.log(val.data[0].weather.code)
+        //Sets big box
         if(val.data[0].weather.code == 200 || val.data[0].weather.code == 201 || val.data[0].weather.code == 202) {
             imgB.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -1260,8 +1243,7 @@ btn1.addEventListener("click", async function() {
 
 
 
-        //Set Small Image 1
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 1
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS1.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -1317,8 +1299,7 @@ btn1.addEventListener("click", async function() {
 
 
 
-        //Set Small Image 2
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 2
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS2.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -1375,8 +1356,7 @@ btn1.addEventListener("click", async function() {
 
 
 
-        //Set Small Image 3
-        console.log(foreVal.data[0].weather.code)
+        //Sets small box 3
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS3.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -1433,8 +1413,7 @@ btn1.addEventListener("click", async function() {
 
 
 
-        //Set Small Image 4
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 4
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS4.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -1488,8 +1467,7 @@ btn1.addEventListener("click", async function() {
 
 
 
-        //Set Small Image 5
-        console.log(foreVal.data[0].weather.code)
+        //Sets small box 5
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS5.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -1540,6 +1518,7 @@ btn1.addEventListener("click", async function() {
         }
 
 
+        //Calls set button function
         buttons();
 
 
@@ -1552,7 +1531,9 @@ btn1.addEventListener("click", async function() {
 
 
 
-
+//Sets BTN 2 click function
+//Only diffence with submit is the function doesn't initalize an id value
+//The functions do add to the id values
 btn2.addEventListener("click", async function() {
     today = moment();
     let checkRepeat =  false;
@@ -1560,20 +1541,14 @@ btn2.addEventListener("click", async function() {
     cityName = btn2.value;
     if(cityName != '') {
         cityName = cityName.split(',');
-        //console.log(cityName)
         cityName = cityName[0];
         let val = await checkCity();
         lat = val.data[0].lat;
         lon = val.data[0].lon;
         let foreVal = await checkFore();
-        //console.log(foreVal);
-
-
         for(let i = 0; i < localStorage.length; i++) {
             let check = JSON.parse(localStorage.getItem(localStorage.key(i)));
             if(check.cityName == val.data[0].city_name) {
-                //console.log(check.cityName)
-                //console.log(val.data[0].city_name)
                 console.log("repeat");
                 checkRepeat =  true;
             }
@@ -1581,24 +1556,20 @@ btn2.addEventListener("click", async function() {
         loadVal.sort((a, b) => b.id - a.id);
         console.log(loadVal);
         cityName = val.data[0].city_name.split(',');
-        //console.log(cityName[0]);
         id += 1;
         if(checkRepeat = true) {
             entry =  {
-                id: id,//localStorage.length,
+                id: id,
                 cityName: val.data[0].city_name
             }
         }
-        //console.log(localStorage.length)
         let nice = localStorage.length + 1;
-        //console.log(id);
         if(checkRepeat = false) {
             entry =  {
-                id: id,//nice,
+                id: id,
                 cityName: val.data[0].city_name
             }
         }
-        //console.log(val);
         nameBox.innerText = `${val.data[0].city_name}  (${today.format("MMM Do, YYYY")})`;
         localStorage.setItem(`${val.data[0].city_name}`, JSON.stringify(entry));
         tempBox.innerText = `Temp: ${val.data[0].temp}°F`
@@ -1628,10 +1599,10 @@ btn2.addEventListener("click", async function() {
 
         for(let i = 0; i < localStorage.length; i++) {
             loadVal[i] = JSON.parse(localStorage.getItem(localStorage.key(i)));
-            //console.log(loadVal[i]);
+            
         }
         loadVal.sort((a, b) => b.id - a.id);
-        //console.log(loadVal);
+       
 
 
 
@@ -1666,8 +1637,7 @@ btn2.addEventListener("click", async function() {
 
 
 
-        //Set Big Image
-        //console.log(val.data[0].weather.code)
+        //Sets big box
         if(val.data[0].weather.code == 200 || val.data[0].weather.code == 201 || val.data[0].weather.code == 202) {
             imgB.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -1729,8 +1699,7 @@ btn2.addEventListener("click", async function() {
 
 
 
-        //Set Small Image 1
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 1
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS1.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -1786,8 +1755,7 @@ btn2.addEventListener("click", async function() {
 
 
 
-        //Set Small Image 2
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 2
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS2.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -1844,8 +1812,7 @@ btn2.addEventListener("click", async function() {
 
 
 
-        //Set Small Image 3
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 3
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS3.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -1902,8 +1869,7 @@ btn2.addEventListener("click", async function() {
 
 
 
-        //Set Small Image 4
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 4
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS4.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -1957,8 +1923,7 @@ btn2.addEventListener("click", async function() {
 
 
 
-        //Set Small Image 5
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 5 
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS5.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -2009,6 +1974,7 @@ btn2.addEventListener("click", async function() {
         }
 
 
+        //Calls the set button function
         buttons();
 
 
@@ -2020,7 +1986,9 @@ btn2.addEventListener("click", async function() {
 
 
 
-
+//Sets BTN 3 click function
+//Only diffence with submit is the function doesn't initalize an id value
+//The functions do add to the id values
 btn3.addEventListener("click", async function() {
     today = moment();
     let checkRepeat =  false;
@@ -2028,20 +1996,14 @@ btn3.addEventListener("click", async function() {
     cityName = btn3.value;
     if(cityName != '') {
         cityName = cityName.split(',');
-        //console.log(cityName)
         cityName = cityName[0];
         let val = await checkCity();
         lat = val.data[0].lat;
         lon = val.data[0].lon;
         let foreVal = await checkFore();
-        //console.log(foreVal);
-
-
         for(let i = 0; i < localStorage.length; i++) {
             let check = JSON.parse(localStorage.getItem(localStorage.key(i)));
             if(check.cityName == val.data[0].city_name) {
-                //console.log(check.cityName)
-                //console.log(val.data[0].city_name)
                 console.log("repeat");
                 checkRepeat =  true;
             }
@@ -2049,24 +2011,20 @@ btn3.addEventListener("click", async function() {
         loadVal.sort((a, b) => b.id - a.id);
         console.log(loadVal);
         cityName = val.data[0].city_name.split(',');
-        //console.log(cityName[0]);
         id += 1;
         if(checkRepeat = true) {
             entry =  {
-                id: id,//localStorage.length,
+                id: id,
                 cityName: val.data[0].city_name
             }
         }
-        //console.log(localStorage.length)
         let nice = localStorage.length + 1;
-        //console.log(id);
         if(checkRepeat = false) {
             entry =  {
-                id: id,//nice,
+                id: id,
                 cityName: val.data[0].city_name
             }
         }
-        //console.log(val);
         nameBox.innerText = `${val.data[0].city_name}  (${today.format("MMM Do, YYYY")})`;
         localStorage.setItem(`${val.data[0].city_name}`, JSON.stringify(entry));
         tempBox.innerText = `Temp: ${val.data[0].temp}°F`
@@ -2092,17 +2050,12 @@ btn3.addEventListener("click", async function() {
         uvVal.innerText = `${uv}`
 
 
-
-
         for(let i = 0; i < localStorage.length; i++) {
             loadVal[i] = JSON.parse(localStorage.getItem(localStorage.key(i)));
-            //console.log(loadVal[i]);
+            
         }
         loadVal.sort((a, b) => b.id - a.id);
-        //console.log(loadVal);
-
-
-
+       
 
         date1.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
         temp1.innerText = `Temp: ${foreVal.data[1].temp}°F`;
@@ -2131,11 +2084,7 @@ btn3.addEventListener("click", async function() {
 
 
 
-
-
-
-        //Set Big Image
-        //console.log(val.data[0].weather.code)
+        //Sets big box
         if(val.data[0].weather.code == 200 || val.data[0].weather.code == 201 || val.data[0].weather.code == 202) {
             imgB.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -2188,17 +2137,7 @@ btn3.addEventListener("click", async function() {
 
 
 
-
-
-
-
-
-
-
-
-
-        //Set Small Image 1
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 1
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS1.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -2251,11 +2190,7 @@ btn3.addEventListener("click", async function() {
 
 
 
-
-
-
-        //Set Small Image 2
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 2
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS2.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -2307,13 +2242,8 @@ btn3.addEventListener("click", async function() {
 
 
 
-
-
-
-
-
-        //Set Small Image 3
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 3
+        
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS3.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -2366,12 +2296,7 @@ btn3.addEventListener("click", async function() {
 
 
 
-
-
-
-
-        //Set Small Image 4
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 4
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS4.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -2424,9 +2349,7 @@ btn3.addEventListener("click", async function() {
 
 
 
-
-        //Set Small Image 5
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 5
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS5.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -2477,6 +2400,7 @@ btn3.addEventListener("click", async function() {
         }
 
 
+        //Calls the set button function
         buttons();
 
 
@@ -2485,7 +2409,9 @@ btn3.addEventListener("click", async function() {
 })
 
 
-
+//Sets BTN 4 click function
+//Only diffence with submit is the function doesn't initalize an id value
+//The functions do add to the id values
 btn4.addEventListener("click", async function() {
     today = moment();
     let checkRepeat =  false;
@@ -2493,20 +2419,14 @@ btn4.addEventListener("click", async function() {
     cityName = btn4.value;
     if(cityName != '') {
         cityName = cityName.split(',');
-        //console.log(cityName)
         cityName = cityName[0];
         let val = await checkCity();
         lat = val.data[0].lat;
         lon = val.data[0].lon;
         let foreVal = await checkFore();
-        //console.log(foreVal);
-
-
         for(let i = 0; i < localStorage.length; i++) {
             let check = JSON.parse(localStorage.getItem(localStorage.key(i)));
             if(check.cityName == val.data[0].city_name) {
-                //console.log(check.cityName)
-                //console.log(val.data[0].city_name)
                 console.log("repeat");
                 checkRepeat =  true;
             }
@@ -2514,24 +2434,20 @@ btn4.addEventListener("click", async function() {
         loadVal.sort((a, b) => b.id - a.id);
         console.log(loadVal);
         cityName = val.data[0].city_name.split(',');
-        //console.log(cityName[0]);
         id += 1;
         if(checkRepeat = true) {
             entry =  {
-                id: id,//localStorage.length,
+                id: id,
                 cityName: val.data[0].city_name
             }
         }
-        //console.log(localStorage.length)
         let nice = localStorage.length + 1;
-        //console.log(id);
         if(checkRepeat = false) {
             entry =  {
-                id: id,//nice,
+                id: id,
                 cityName: val.data[0].city_name
             }
         }
-        //console.log(val);
         nameBox.innerText = `${val.data[0].city_name}  (${today.format("MMM Do, YYYY")})`;
         localStorage.setItem(`${val.data[0].city_name}`, JSON.stringify(entry));
         tempBox.innerText = `Temp: ${val.data[0].temp}°F`
@@ -2557,17 +2473,12 @@ btn4.addEventListener("click", async function() {
         uvVal.innerText = `${uv}`
 
 
-
-
         for(let i = 0; i < localStorage.length; i++) {
             loadVal[i] = JSON.parse(localStorage.getItem(localStorage.key(i)));
-            //console.log(loadVal[i]);
+            
         }
         loadVal.sort((a, b) => b.id - a.id);
-        //console.log(loadVal);
-
-
-
+       
 
         date1.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
         temp1.innerText = `Temp: ${foreVal.data[1].temp}°F`;
@@ -2597,10 +2508,7 @@ btn4.addEventListener("click", async function() {
 
 
 
-
-
-        //Set Big Image
-        //console.log(val.data[0].weather.code)
+        //Sets big box
         if(val.data[0].weather.code == 200 || val.data[0].weather.code == 201 || val.data[0].weather.code == 202) {
             imgB.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -2655,15 +2563,7 @@ btn4.addEventListener("click", async function() {
 
 
 
-
-
-
-
-
-
-
-        //Set Small Image 1
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 1
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS1.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -2717,10 +2617,7 @@ btn4.addEventListener("click", async function() {
 
 
 
-
-
-        //Set Small Image 2
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 2
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS2.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -2775,10 +2672,7 @@ btn4.addEventListener("click", async function() {
 
 
 
-
-
-        //Set Small Image 3
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 3
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS3.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -2833,10 +2727,7 @@ btn4.addEventListener("click", async function() {
 
 
 
-
-
-        //Set Small Image 4
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 4
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS4.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -2888,10 +2779,7 @@ btn4.addEventListener("click", async function() {
 
 
 
-
-
-        //Set Small Image 5
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 5
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS5.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -2942,6 +2830,7 @@ btn4.addEventListener("click", async function() {
         }
 
 
+        //Calls the set button function
         buttons();
 
 
@@ -2951,7 +2840,9 @@ btn4.addEventListener("click", async function() {
 
 
 
-
+//Sets BTN 5 click function
+//Only diffence with submit is the function doesn't initalize an id value
+//The functions do add to the id values
 btn5.addEventListener("click", async function() {
     today = moment();
     let checkRepeat =  false;
@@ -2959,20 +2850,14 @@ btn5.addEventListener("click", async function() {
     cityName = btn5.value;
     if(cityName != '') {
         cityName = cityName.split(',');
-        //console.log(cityName)
         cityName = cityName[0];
         let val = await checkCity();
         lat = val.data[0].lat;
         lon = val.data[0].lon;
         let foreVal = await checkFore();
-        //console.log(foreVal);
-
-
         for(let i = 0; i < localStorage.length; i++) {
             let check = JSON.parse(localStorage.getItem(localStorage.key(i)));
             if(check.cityName == val.data[0].city_name) {
-                //console.log(check.cityName)
-                //console.log(val.data[0].city_name)
                 console.log("repeat");
                 checkRepeat =  true;
             }
@@ -2980,24 +2865,20 @@ btn5.addEventListener("click", async function() {
         loadVal.sort((a, b) => b.id - a.id);
         console.log(loadVal);
         cityName = val.data[0].city_name.split(',');
-        //console.log(cityName[0]);
         id += 1;
         if(checkRepeat = true) {
             entry =  {
-                id: id,//localStorage.length,
+                id: id,
                 cityName: val.data[0].city_name
             }
         }
-        //console.log(localStorage.length)
         let nice = localStorage.length + 1;
-        //console.log(id);
         if(checkRepeat = false) {
             entry =  {
-                id: id,//nice,
+                id: id,
                 cityName: val.data[0].city_name
             }
         }
-        //console.log(val);
         nameBox.innerText = `${val.data[0].city_name}  (${today.format("MMM Do, YYYY")})`;
         localStorage.setItem(`${val.data[0].city_name}`, JSON.stringify(entry));
         tempBox.innerText = `Temp: ${val.data[0].temp}°F`
@@ -3021,18 +2902,12 @@ btn5.addEventListener("click", async function() {
         }
         uv = uv.toFixed(2);
         uvVal.innerText = `${uv}`
-
-
-
-
         for(let i = 0; i < localStorage.length; i++) {
             loadVal[i] = JSON.parse(localStorage.getItem(localStorage.key(i)));
-            //console.log(loadVal[i]);
+            
         }
         loadVal.sort((a, b) => b.id - a.id);
-        //console.log(loadVal);
-
-
+       
 
 
         date1.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
@@ -3063,10 +2938,7 @@ btn5.addEventListener("click", async function() {
 
 
 
-
-
-        //Set Big Image
-        //console.log(val.data[0].weather.code)
+        //Sets big box
         if(val.data[0].weather.code == 200 || val.data[0].weather.code == 201 || val.data[0].weather.code == 202) {
             imgB.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -3128,8 +3000,7 @@ btn5.addEventListener("click", async function() {
 
 
 
-        //Set Small Image 1
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 1
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS1.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -3185,8 +3056,7 @@ btn5.addEventListener("click", async function() {
 
 
 
-        //Set Small Image 2
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 2
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS2.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -3243,8 +3113,7 @@ btn5.addEventListener("click", async function() {
 
 
 
-        //Set Small Image 3
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 3
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS3.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -3301,8 +3170,7 @@ btn5.addEventListener("click", async function() {
 
 
 
-        //Set Small Image 4
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 4
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS4.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -3356,8 +3224,7 @@ btn5.addEventListener("click", async function() {
 
 
 
-        //Set Small Image 5
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 5
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS5.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -3408,6 +3275,7 @@ btn5.addEventListener("click", async function() {
         }
 
 
+        //Calls the set button function
         buttons();
 
 
@@ -3417,7 +3285,9 @@ btn5.addEventListener("click", async function() {
 
 
 
-
+//Sets BTN 6 click function
+//Only diffence with submit is the function doesn't initalize an id value
+//The functions do add to the id values
 btn6.addEventListener("click", async function() {
     today = moment();
     let checkRepeat =  false;
@@ -3425,20 +3295,14 @@ btn6.addEventListener("click", async function() {
     cityName = btn6.value;
     if(cityName != '') {
         cityName = cityName.split(',');
-        //console.log(cityName)
         cityName = cityName[0];
         let val = await checkCity();
         lat = val.data[0].lat;
         lon = val.data[0].lon;
         let foreVal = await checkFore();
-        //console.log(foreVal);
-
-
         for(let i = 0; i < localStorage.length; i++) {
             let check = JSON.parse(localStorage.getItem(localStorage.key(i)));
             if(check.cityName == val.data[0].city_name) {
-                //console.log(check.cityName)
-                //console.log(val.data[0].city_name)
                 console.log("repeat");
                 checkRepeat =  true;
             }
@@ -3446,24 +3310,20 @@ btn6.addEventListener("click", async function() {
         loadVal.sort((a, b) => b.id - a.id);
         console.log(loadVal);
         cityName = val.data[0].city_name.split(',');
-        //console.log(cityName[0]);
         id += 1;
         if(checkRepeat = true) {
             entry =  {
-                id: id,//localStorage.length,
+                id: id,
                 cityName: val.data[0].city_name
             }
         }
-        //console.log(localStorage.length)
         let nice = localStorage.length + 1;
-        //console.log(id);
         if(checkRepeat = false) {
             entry =  {
-                id: id,//nice,
+                id: id,
                 cityName: val.data[0].city_name
             }
         }
-        //console.log(val);
         nameBox.innerText = `${val.data[0].city_name}  (${today.format("MMM Do, YYYY")})`;
         localStorage.setItem(`${val.data[0].city_name}`, JSON.stringify(entry));
         tempBox.innerText = `Temp: ${val.data[0].temp}°F`
@@ -3488,18 +3348,12 @@ btn6.addEventListener("click", async function() {
         uv = uv.toFixed(2);
         uvVal.innerText = `${uv}`
 
-
-
-
         for(let i = 0; i < localStorage.length; i++) {
             loadVal[i] = JSON.parse(localStorage.getItem(localStorage.key(i)));
-            //console.log(loadVal[i]);
+            
         }
         loadVal.sort((a, b) => b.id - a.id);
-        //console.log(loadVal);
-
-
-
+       
 
         date1.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
         temp1.innerText = `Temp: ${foreVal.data[1].temp}°F`;
@@ -3527,12 +3381,7 @@ btn6.addEventListener("click", async function() {
         hum5. innerText = `Humidity: ${foreVal.data[5].rh} %`;
 
 
-
-
-
-
-        //Set Big Image
-        //console.log(val.data[0].weather.code)
+        //Sets big box
         if(val.data[0].weather.code == 200 || val.data[0].weather.code == 201 || val.data[0].weather.code == 202) {
             imgB.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -3586,16 +3435,7 @@ btn6.addEventListener("click", async function() {
 
 
 
-
-
-
-
-
-
-
-
-        //Set Small Image 1
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 1
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS1.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -3648,11 +3488,7 @@ btn6.addEventListener("click", async function() {
 
 
 
-
-
-
-        //Set Small Image 2
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 2
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS2.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -3706,11 +3542,7 @@ btn6.addEventListener("click", async function() {
 
 
 
-
-
-
-        //Set Small Image 3
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 3
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS3.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -3763,12 +3595,7 @@ btn6.addEventListener("click", async function() {
 
 
 
-
-
-
-
-        //Set Small Image 4
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 4
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS4.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -3822,8 +3649,7 @@ btn6.addEventListener("click", async function() {
 
 
 
-        //Set Small Image 5
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 5
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS5.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -3874,6 +3700,7 @@ btn6.addEventListener("click", async function() {
         }
 
 
+        //Calls the set button function
         buttons();
 
 
@@ -3883,7 +3710,9 @@ btn6.addEventListener("click", async function() {
 
 
 
-
+//Sets BTN 7 click function
+//Only diffence with submit is the function doesn't initalize an id value
+//The functions do add to the id values
 btn7.addEventListener("click", async function() {
     today = moment();
     let checkRepeat =  false;
@@ -3891,20 +3720,14 @@ btn7.addEventListener("click", async function() {
     cityName = btn7.value;
     if(cityName != '') {
         cityName = cityName.split(',');
-        //console.log(cityName)
         cityName = cityName[0];
         let val = await checkCity();
         lat = val.data[0].lat;
         lon = val.data[0].lon;
         let foreVal = await checkFore();
-        //console.log(foreVal);
-
-
         for(let i = 0; i < localStorage.length; i++) {
             let check = JSON.parse(localStorage.getItem(localStorage.key(i)));
             if(check.cityName == val.data[0].city_name) {
-                //console.log(check.cityName)
-                //console.log(val.data[0].city_name)
                 console.log("repeat");
                 checkRepeat =  true;
             }
@@ -3912,24 +3735,20 @@ btn7.addEventListener("click", async function() {
         loadVal.sort((a, b) => b.id - a.id);
         console.log(loadVal);
         cityName = val.data[0].city_name.split(',');
-        //console.log(cityName[0]);
         id += 1;
         if(checkRepeat = true) {
             entry =  {
-                id: id,//localStorage.length,
+                id: id,
                 cityName: val.data[0].city_name
             }
         }
-        //console.log(localStorage.length)
         let nice = localStorage.length + 1;
-        //console.log(id);
         if(checkRepeat = false) {
             entry =  {
-                id: id,//nice,
+                id: id,
                 cityName: val.data[0].city_name
             }
         }
-        //console.log(val);
         nameBox.innerText = `${val.data[0].city_name}  (${today.format("MMM Do, YYYY")})`;
         localStorage.setItem(`${val.data[0].city_name}`, JSON.stringify(entry));
         tempBox.innerText = `Temp: ${val.data[0].temp}°F`
@@ -3953,19 +3772,12 @@ btn7.addEventListener("click", async function() {
         }
         uv = uv.toFixed(2);
         uvVal.innerText = `${uv}`
-
-
-
-
         for(let i = 0; i < localStorage.length; i++) {
             loadVal[i] = JSON.parse(localStorage.getItem(localStorage.key(i)));
-            //console.log(loadVal[i]);
+            
         }
         loadVal.sort((a, b) => b.id - a.id);
-        //console.log(loadVal);
-
-
-
+       
 
         date1.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
         temp1.innerText = `Temp: ${foreVal.data[1].temp}°F`;
@@ -3995,10 +3807,7 @@ btn7.addEventListener("click", async function() {
 
 
 
-
-
-        //Set Big Image
-        //console.log(val.data[0].weather.code)
+        //Sets big box
         if(val.data[0].weather.code == 200 || val.data[0].weather.code == 201 || val.data[0].weather.code == 202) {
             imgB.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -4053,15 +3862,7 @@ btn7.addEventListener("click", async function() {
 
 
 
-
-
-
-
-
-
-
-        //Set Small Image 1
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 1
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS1.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -4117,8 +3918,7 @@ btn7.addEventListener("click", async function() {
 
 
 
-        //Set Small Image 2
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 2
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS2.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -4175,8 +3975,7 @@ btn7.addEventListener("click", async function() {
 
 
 
-        //Set Small Image 3
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 3
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS3.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -4233,8 +4032,7 @@ btn7.addEventListener("click", async function() {
 
 
 
-        //Set Small Image 4
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 4
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS4.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -4288,8 +4086,7 @@ btn7.addEventListener("click", async function() {
 
 
 
-        //Set Small Image 5
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 5
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS5.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -4340,6 +4137,7 @@ btn7.addEventListener("click", async function() {
         }
 
 
+        //Calls the set button function
         buttons();
 
 
@@ -4349,7 +4147,9 @@ btn7.addEventListener("click", async function() {
 
 
 
-
+//Sets BTN 8 click function
+//Only diffence with submit is the function doesn't initalize an id value
+//The functions do add to the id values
 btn8.addEventListener("click", async function() {
     today = moment();
     let checkRepeat =  false;
@@ -4357,20 +4157,14 @@ btn8.addEventListener("click", async function() {
     cityName = btn8.value;
     if(cityName != '') {
         cityName = cityName.split(',');
-        //console.log(cityName)
         cityName = cityName[0];
         let val = await checkCity();
         lat = val.data[0].lat;
         lon = val.data[0].lon;
         let foreVal = await checkFore();
-        //console.log(foreVal);
-
-
         for(let i = 0; i < localStorage.length; i++) {
             let check = JSON.parse(localStorage.getItem(localStorage.key(i)));
             if(check.cityName == val.data[0].city_name) {
-                //console.log(check.cityName)
-                //console.log(val.data[0].city_name)
                 console.log("repeat");
                 checkRepeat =  true;
             }
@@ -4378,24 +4172,20 @@ btn8.addEventListener("click", async function() {
         loadVal.sort((a, b) => b.id - a.id);
         console.log(loadVal);
         cityName = val.data[0].city_name.split(',');
-        //console.log(cityName[0]);
         id += 1;
         if(checkRepeat = true) {
             entry =  {
-                id: id,//localStorage.length,
+                id: id,
                 cityName: val.data[0].city_name
             }
         }
-        //console.log(localStorage.length)
         let nice = localStorage.length + 1;
-        //console.log(id);
         if(checkRepeat = false) {
             entry =  {
-                id: id,//nice,
+                id: id,
                 cityName: val.data[0].city_name
             }
         }
-        //console.log(val);
         nameBox.innerText = `${val.data[0].city_name}  (${today.format("MMM Do, YYYY")})`;
         localStorage.setItem(`${val.data[0].city_name}`, JSON.stringify(entry));
         tempBox.innerText = `Temp: ${val.data[0].temp}°F`
@@ -4425,12 +4215,10 @@ btn8.addEventListener("click", async function() {
 
         for(let i = 0; i < localStorage.length; i++) {
             loadVal[i] = JSON.parse(localStorage.getItem(localStorage.key(i)));
-            //console.log(loadVal[i]);
+            
         }
         loadVal.sort((a, b) => b.id - a.id);
-        //console.log(loadVal);
-
-
+       
 
 
         date1.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
@@ -4461,10 +4249,7 @@ btn8.addEventListener("click", async function() {
 
 
 
-
-
-        //Set Big Image
-        //console.log(val.data[0].weather.code)
+        //Sets big box
         if(val.data[0].weather.code == 200 || val.data[0].weather.code == 201 || val.data[0].weather.code == 202) {
             imgB.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -4518,16 +4303,7 @@ btn8.addEventListener("click", async function() {
 
 
 
-
-
-
-
-
-
-
-
-        //Set Small Image 1
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 1
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS1.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -4583,8 +4359,7 @@ btn8.addEventListener("click", async function() {
 
 
 
-        //Set Small Image 2
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 2
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS2.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -4641,8 +4416,7 @@ btn8.addEventListener("click", async function() {
 
 
 
-        //Set Small Image 3
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 3
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS3.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -4699,8 +4473,7 @@ btn8.addEventListener("click", async function() {
 
 
 
-        //Set Small Image 4
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 4
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS4.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -4754,8 +4527,7 @@ btn8.addEventListener("click", async function() {
 
 
 
-        //Set Small Image 5
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 5
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS5.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -4806,6 +4578,7 @@ btn8.addEventListener("click", async function() {
         }
 
 
+        //Calls the set button function
         buttons();
 
 
@@ -4815,7 +4588,9 @@ btn8.addEventListener("click", async function() {
 
 
 
-
+//Sets BTN 9 click function
+//Only diffence with submit is the function doesn't initalize an id value
+//The functions do add to the id values
 btn9.addEventListener("click", async function() {
     today = moment();
     let checkRepeat =  false;
@@ -4823,20 +4598,16 @@ btn9.addEventListener("click", async function() {
     cityName = btn9.value;
     if(cityName != '') {
         cityName = cityName.split(',');
-        //console.log(cityName)
         cityName = cityName[0];
         let val = await checkCity();
         lat = val.data[0].lat;
         lon = val.data[0].lon;
         let foreVal = await checkFore();
-        //console.log(foreVal);
-
-
         for(let i = 0; i < localStorage.length; i++) {
             let check = JSON.parse(localStorage.getItem(localStorage.key(i)));
             if(check.cityName == val.data[0].city_name) {
-                //console.log(check.cityName)
-                //console.log(val.data[0].city_name)
+                
+                
                 console.log("repeat");
                 checkRepeat =  true;
             }
@@ -4844,24 +4615,20 @@ btn9.addEventListener("click", async function() {
         loadVal.sort((a, b) => b.id - a.id);
         console.log(loadVal);
         cityName = val.data[0].city_name.split(',');
-        //console.log(cityName[0]);
         id += 1;
         if(checkRepeat = true) {
             entry =  {
-                id: id,//localStorage.length,
+                id: id,
                 cityName: val.data[0].city_name
             }
         }
-        //console.log(localStorage.length)
         let nice = localStorage.length + 1;
-        //console.log(id);
         if(checkRepeat = false) {
             entry =  {
-                id: id,//nice,
+                id: id,
                 cityName: val.data[0].city_name
             }
         }
-        //console.log(val);
         nameBox.innerText = `${val.data[0].city_name}  (${today.format("MMM Do, YYYY")})`;
         localStorage.setItem(`${val.data[0].city_name}`, JSON.stringify(entry));
         tempBox.innerText = `Temp: ${val.data[0].temp}°F`
@@ -4885,18 +4652,12 @@ btn9.addEventListener("click", async function() {
         }
         uv = uv.toFixed(2);
         uvVal.innerText = `${uv}`
-
-
-
-
         for(let i = 0; i < localStorage.length; i++) {
             loadVal[i] = JSON.parse(localStorage.getItem(localStorage.key(i)));
-            //console.log(loadVal[i]);
+            
         }
         loadVal.sort((a, b) => b.id - a.id);
-        //console.log(loadVal);
-
-
+       
 
 
         date1.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
@@ -4929,8 +4690,7 @@ btn9.addEventListener("click", async function() {
 
 
 
-        //Set Big Image
-        //console.log(val.data[0].weather.code)
+        //Sets big box
         if(val.data[0].weather.code == 200 || val.data[0].weather.code == 201 || val.data[0].weather.code == 202) {
             imgB.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -4992,8 +4752,7 @@ btn9.addEventListener("click", async function() {
 
 
 
-        //Set Small Image 1
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 1
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS1.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -5049,8 +4808,7 @@ btn9.addEventListener("click", async function() {
 
 
 
-        //Set Small Image 2
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 2
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS2.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -5107,8 +4865,7 @@ btn9.addEventListener("click", async function() {
 
 
 
-        //Set Small Image 3
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 3
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS3.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -5165,8 +4922,7 @@ btn9.addEventListener("click", async function() {
 
 
 
-        //Set Small Image 4
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 4
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS4.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -5220,8 +4976,7 @@ btn9.addEventListener("click", async function() {
 
 
 
-        //Set Small Image 5
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 5
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS5.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -5272,6 +5027,7 @@ btn9.addEventListener("click", async function() {
         }
 
 
+        //Calls the set button function
         buttons();
 
 
@@ -5281,7 +5037,9 @@ btn9.addEventListener("click", async function() {
 
 
 
-
+//Sets BTN 10 click function
+//Only diffence with submit is the function doesn't initalize an id value
+//The functions do add to the id values
 btn10.addEventListener("click", async function() {
     today = moment();
     let checkRepeat =  false;
@@ -5289,20 +5047,14 @@ btn10.addEventListener("click", async function() {
     cityName = btn10.value;
     if(cityName != '') {
         cityName = cityName.split(',');
-        //console.log(cityName)
         cityName = cityName[0];
         let val = await checkCity();
         lat = val.data[0].lat;
         lon = val.data[0].lon;
         let foreVal = await checkFore();
-        //console.log(foreVal);
-
-
         for(let i = 0; i < localStorage.length; i++) {
             let check = JSON.parse(localStorage.getItem(localStorage.key(i)));
-            if(check.cityName == val.data[0].city_name) {
-                //console.log(check.cityName)
-                //console.log(val.data[0].city_name)
+            if(check.cityName == val.data[0].city_name) {   
                 console.log("repeat");
                 checkRepeat =  true;
             }
@@ -5310,24 +5062,21 @@ btn10.addEventListener("click", async function() {
         loadVal.sort((a, b) => b.id - a.id);
         console.log(loadVal);
         cityName = val.data[0].city_name.split(',');
-        //console.log(cityName[0]);
         id += 1;
         if(checkRepeat = true) {
             entry =  {
-                id: id,//localStorage.length,
+                id: id,
                 cityName: val.data[0].city_name
             }
         }
-        //console.log(localStorage.length)
         let nice = localStorage.length + 1;
-        //console.log(id);
         if(checkRepeat = false) {
             entry =  {
-                id: id,//nice,
+                id: id,
                 cityName: val.data[0].city_name
             }
         }
-        //console.log(val);
+        
         nameBox.innerText = `${val.data[0].city_name}  (${today.format("MMM Do, YYYY")})`;
         localStorage.setItem(`${val.data[0].city_name}`, JSON.stringify(entry));
         tempBox.innerText = `Temp: ${val.data[0].temp}°F`
@@ -5352,18 +5101,12 @@ btn10.addEventListener("click", async function() {
         uv = uv.toFixed(2);
         uvVal.innerText = `${uv}`
 
-
-
-
         for(let i = 0; i < localStorage.length; i++) {
             loadVal[i] = JSON.parse(localStorage.getItem(localStorage.key(i)));
-            //console.log(loadVal[i]);
+            
         }
         loadVal.sort((a, b) => b.id - a.id);
-        //console.log(loadVal);
-
-
-
+       
 
         date1.innerText = `(${today.add(1,'days').format("MMM Do, YYYY")})`;
         temp1.innerText = `Temp: ${foreVal.data[1].temp}°F`;
@@ -5393,10 +5136,7 @@ btn10.addEventListener("click", async function() {
 
 
 
-
-
-        //Set Big Image
-        //console.log(val.data[0].weather.code)
+        //Sets big box
         if(val.data[0].weather.code == 200 || val.data[0].weather.code == 201 || val.data[0].weather.code == 202) {
             imgB.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -5450,16 +5190,7 @@ btn10.addEventListener("click", async function() {
 
 
 
-
-
-
-
-
-
-
-
-        //Set Small Image 1
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 1
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS1.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -5512,11 +5243,7 @@ btn10.addEventListener("click", async function() {
 
 
 
-
-
-
-        //Set Small Image 2
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 2
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS2.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -5570,11 +5297,7 @@ btn10.addEventListener("click", async function() {
 
 
 
-
-
-
-        //Set Small Image 3
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 3
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS3.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -5628,11 +5351,7 @@ btn10.addEventListener("click", async function() {
 
 
 
-
-
-
-        //Set Small Image 4
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 4
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS4.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -5686,8 +5405,7 @@ btn10.addEventListener("click", async function() {
 
 
 
-        //Set Small Image 5
-        //console.log(foreVal.data[0].weather.code)
+        //Sets small box 5
         if(foreVal.data[0].weather.code == 200 || foreVal.data[0].weather.code == 201 || foreVal.data[0].weather.code == 202) {
             imgS5.style.backgroundImage = "url('./public/images/t01d.png')";
         }
@@ -5738,6 +5456,8 @@ btn10.addEventListener("click", async function() {
         }
 
 
+
+        //Calls the set button function
         buttons();
 
 

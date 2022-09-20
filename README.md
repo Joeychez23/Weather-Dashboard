@@ -13,6 +13,9 @@ Images of the site are shown below display the functionality of the site.
 
 Pictures of the site will be provided bellow:
 
+<img src="./public/images/5.png" alt="Alt text" title="Optional title">
+<img src="./public/images/6.png" alt="Alt text" title="Optional title">
+<img src="./public/images/7.png" alt="Alt text" title="Optional title">
 <img src="./public/images/1.png" alt="Alt text" title="Optional title">
 <img src="./public/images/2.png" alt="Alt text" title="Optional title">
 <img src="./public/images/3.png" alt="Alt text" title="Optional title">
